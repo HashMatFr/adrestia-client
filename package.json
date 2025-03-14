@@ -1,0 +1,55 @@
+{
+  "name": "adrestia-client",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "dev": "nuxt dev -p 3000",
+    "start": "node .output/server/index.mjs",
+    "build-local": "set NODE_ENV='production' && nuxt build --production",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:prettier",
+    "lintfix": "prettier --write --list-different . && npm run lint:js --fix"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/camera": "^6.1.2",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/geolocation": "^6.1.0",
+    "@capacitor/ios": "^6.2.0",
+    "@capacitor/preferences": "^6.0.3",
+    "@ionic/pwa-elements": "^3.3.0",
+    "@nuxt/webpack-builder": "3.14.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/i18n": "^9.1.0",
+    "@pinia/nuxt": "^0.7.0",
+    "@tailwindcss/forms": "^0.5.9",
+    "@vitejs/plugin-vue": "^5.2.0",
+    "autoprefixer": "^10.4.20",
+    "capacitor-secure-storage-plugin": "^0.10.0",
+    "compressorjs": "^1.2.1",
+    "dayjs": "^1.11.13",
+    "keycloak-js": "^26.0.6",
+    "nuxt": "3.14.0",
+    "nuxt-security": "^2.1.4",
+    "pinia": "^2.2.6",
+    "postcss": "^8.4.49",
+    "postcss-simple-vars": "^7.0.1",
+    "tailwindcss": "^3.4.15"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.31.0",
+    "prettier": "^3.3.3"
+  },
+  "overrides": {
+    "vue": "latest",
+    "@parcel/watcher": "2.5.0"
+  }
+}
