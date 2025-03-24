@@ -52,6 +52,8 @@ import { Geolocation } from '@capacitor/geolocation'
 import dayjs from 'dayjs'
 import 'dayjs/locale/fr'
 import ProfileStatus from '~/components/home/ProfileStatus.vue'
+import { useStateService } from '~/composables/useStateService'
+import { useStateStore } from '~/stores/stateStore'
 
 definePageMeta({
   layout: 'default',
@@ -64,7 +66,11 @@ const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 
 const profileStore = useProfileStore()
+const stateStore = useStateStore()
+
 const profileService = useProfileService()
+const stateService = useStateService()
+
 profileService.getUserProfile().then(() => {
   if (profileStore.locale === 'fr') {
     dayjs.locale('fr')
@@ -104,7 +110,11 @@ const existingFilesReferencesLength = computed(() => {
 })
 filesService.getFilesReferences().then(() => {
   if (existingFilesReferencesLength.value === 0 && profileStore.enabled) {
-    profileService.updateProfileActivationStatus(false)
+    stateService
+      .updateMinimumPhotosLimitStatus(stateStore.profileStateId, true)
+      .then(() => {
+        stateService.getProfileState()
+      })
   }
 })
 

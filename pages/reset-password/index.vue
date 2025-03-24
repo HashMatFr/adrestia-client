@@ -21,6 +21,17 @@
         v-if="resetCurrentStep === 0"
         @submit-email="submitEmail"
       ></ResetPasswordEmailStep>
+
+      <ResetPasswordPrivateQuestionsStep
+        v-else-if="resetCurrentStep === 1"
+        :first-question="resetPasswordToComplete.firstSecretQuestion"
+        :second-question="resetPasswordToComplete.secondSecretQuestion"
+        @submit-answers="submitPrivateAnswers"
+      ></ResetPasswordPrivateQuestionsStep>
+
+      <ResetPasswordResult
+        v-else-if="resetCurrentStep === 2"
+      ></ResetPasswordResult>
     </div>
   </div>
 </template>
@@ -31,6 +42,8 @@ import Text from '~/components/design/Text.vue'
 import ArrowLeft from '~/components/icons/ArrowLeft.vue'
 import NoResults from '~/components/icons/NoResults.vue'
 import ResetPasswordEmailStep from '~/components/reset-password/ResetPasswordEmailStep.vue'
+import ResetPasswordPrivateQuestionsStep from '~/components/reset-password/ResetPasswordPrivateQuestionsStep.vue'
+import ResetPasswordResult from '~/components/reset-password/ResetPasswordResult.vue'
 import { useResetPasswordsService } from '~/composables/useResetPasswordsService'
 import { ResetPassword } from '~/constants/types'
 import { useLayoutStore } from '~/stores/layoutStore'
@@ -49,6 +62,7 @@ const resetPasswordService = useResetPasswordsService()
 const displayResetError = ref(false)
 const resetCurrentStep = ref(0)
 const resetPasswordToComplete = ref<ResetPassword>(null)
+const newPassword = ref('')
 
 function submitEmail(email: string) {
   resetPasswordService
@@ -61,6 +75,25 @@ function submitEmail(email: string) {
     })
     .catch((error) => {
       displayResetError.value = true
+      resetCurrentStep.value = 0
+    })
+}
+
+function submitPrivateAnswers(answers) {
+  resetPasswordToComplete.value.firstSecretAnswer = answers.firstAnswer
+  resetPasswordToComplete.value.secondSecretAnswer = answers.secondAnswer
+
+  resetPasswordService
+    .resetPassword(resetPasswordToComplete.value)
+    .then((response) => {
+      if (response && typeof response === 'string') {
+        newPassword.value = response
+        resetCurrentStep.value++
+      }
+    })
+    .catch((error) => {
+      displayResetError.value = true
+      resetCurrentStep.value = 0
     })
 }
 

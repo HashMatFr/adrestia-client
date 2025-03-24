@@ -1,5 +1,6 @@
 export const useStateStore = defineStore('state', {
   state: () => ({
+    profileStateId: '',
     activationState: false,
     profileCanBeReactivated: false,
     availableReactivationDate: '',
@@ -7,6 +8,8 @@ export const useStateStore = defineStore('state', {
     subscriptionState: false,
     subscriptionExpiryDate: '',
     uiTheme: '',
+    hasEmailBeenVerified: false,
+    respectMinimumPhotosLimit: false,
   }),
   getters: {},
   actions: {},

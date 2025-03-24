@@ -64,7 +64,8 @@ import {
 } from '@capacitor/camera'
 import { useFilesService } from '~/composables/useFilesService'
 import CustomButton from '../design/CustomButton.vue'
-import { useProfileService } from '~/composables/useProfileService'
+import { useStateService } from '~/composables/useStateService'
+import { useStateStore } from '~/stores/stateStore'
 
 const props = defineProps({
   index: {
@@ -81,8 +82,10 @@ const emit = defineEmits(['delete-photo'])
 
 const { t } = useI18n()
 const photosStore = usePhotosStore()
+const stateStore = useStateStore()
+
 const filesService = useFilesService()
-const profileService = useProfileService()
+const stateService = useStateService()
 
 const isCardFocused = computed(() => {
   return photosStore.focusedCard === props.index
@@ -135,7 +138,11 @@ async function addPhoto() {
 
         // If the profile has at least one photo, it should be activated
         if (newReference.fileIndex === 0) {
-          profileService.updateProfileActivationStatus(true)
+          stateService
+            .updateMinimumPhotosLimitStatus(stateStore.profileStateId, true)
+            .then(() => {
+              stateService.getProfileState()
+            })
         }
       }
     })

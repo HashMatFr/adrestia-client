@@ -53,7 +53,7 @@ function handleChangeField(name, value) {
   }
 }
 
-async function submitEmail() {
+function submitEmail() {
   emailRef.value.validate()
   const isValid = form.value.email
 

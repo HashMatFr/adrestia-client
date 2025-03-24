@@ -16,6 +16,9 @@ export const useStateService = () => {
       stateStore.pauseExpiryDate = response.pauseExpiryDate
       stateStore.subscriptionState = response.subscriptionState
       stateStore.subscriptionExpiryDate = response.subscriptionExpiryDate
+      stateStore.hasEmailBeenVerified = response.hasEmailBeenVerified
+      stateStore.respectMinimumPhotosLimit = response.respectMinimumPhotosLimit
+      stateStore.uiTheme = response.uiTheme
     }
   }
 
@@ -36,9 +39,23 @@ export const useStateService = () => {
     return response
   }
 
+  const updateMinimumPhotosLimitStatus = (
+    profileStateId: string,
+    status: boolean,
+  ) => {
+    return $adrestia('profile-state/update-minimum-photos-limit-status', {
+      method: 'POST',
+      params: {
+        profileStateId,
+        status,
+      },
+    })
+  }
+
   return {
     getProfileState,
     deactivateProfile,
     reactivateProfile,
+    updateMinimumPhotosLimitStatus,
   }
 }

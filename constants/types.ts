@@ -190,6 +190,8 @@ export type ProfileState = {
   pauseExpiryDate: string
   subscriptionState: boolean
   subscriptionExpiryDate: string
+  hasEmailBeenVerified: boolean
+  respectMinimumPhotosLimit: boolean
   uiTheme: string
 }
 

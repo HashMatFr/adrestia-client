@@ -158,15 +158,6 @@ export const useProfileService = () => {
     }
   }
 
-  const updateProfileActivationStatus = (status: boolean) => {
-    return $adrestia('profiles/update-profile-activation-status', {
-      method: 'POST',
-      params: {
-        status,
-      },
-    })
-  }
-
   const getProfilesToBrowse = async (
     matcher: Matcher,
     latitude: number,
@@ -204,7 +195,6 @@ export const useProfileService = () => {
     updateProfileCoordinates,
     updateDetail,
     updateMatcher,
-    updateProfileActivationStatus,
     getProfilesToBrowse,
     updateProfileLocale,
     updateInfos,
