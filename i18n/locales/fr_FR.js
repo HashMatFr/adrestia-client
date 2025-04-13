@@ -23,11 +23,14 @@ export default {
     configureProfile: 'Modifier ma description',
     managePhotos: 'Gérer mes photos',
     profileStatus: {
-      label: 'Le statut de complétion de ton profil',
-      photoWarning:
-        'Ton profil doit avoir au minimum 2 photos pour être visible, actif et découvrir les autres profils.',
+      emailValidationWarning:
+        'Ton email n’a pas encore été validée.<span class="text-alert-500">*</span>',
+      activationWarning: 'Ton profil est actuellement en pause.',
+      photosWarning:
+        'Ton profil doit avoir au minimum 2 photos pour être actif et visible.<span class="text-alert-500">*</span>',
       descriptionWarning:
-        "Ta description n'est pas entièrement terminée, dis en plus sur toi !",
+        'Certaines informations manquantes de ta description sont requises.<span class="text-alert-500">*</span>',
+      noWarnings: 'Ton profil est complet et actif.',
     },
   },
   explore: {
@@ -41,18 +44,18 @@ export default {
     livesIn: 'Habite à : {city}',
     lastActivity: 'Actif {activity}',
     distance: 'A {distance} km',
-    closeDistance: "A moins d'un km",
+    closeDistance: 'A moins d’un km',
     bio1: 'Je souhaitais te dire cela à propos de moi (Ce champ était obligatoire) :',
     bio2: 'Laisse moi me présenter succintement (statut: non lu) :',
     bio3: 'Voilà ma meilleure description (non générée par IA, promis) :',
-    bio4: "Si je devais me présenter (on m'a obligé) :",
+    bio4: 'Si je devais me présenter (on m’a obligé) :',
     bio5: 'En toute objectivité, mes qualités sont (source: ma famille) :',
   },
   likes: {
     pageTitle: 'Likes',
     noResults1: 'Aucun like pour le moment ...',
     noResults2:
-      "Assure toi que ton profil comporte tes meilleurs photos ! C'est de loin l'atout le plus important d'un bon profil !",
+      'Assure toi que ton profil comporte tes meilleurs photos ! C’est de loin l’atout le plus important d’un bon profil !',
   },
   profile: {
     pageTitle: {
@@ -66,7 +69,7 @@ export default {
       username: 'Mon pseudonyme affiché',
       bio: 'Ma description',
       city: 'Ma ville de résidence',
-      education: "Mon niveau d'éducation",
+      education: 'Mon niveau d’éducation',
       notCompleted: 'Non renseigné',
     },
     enums: {
@@ -82,16 +85,16 @@ export default {
   detail: {
     tabTitle: 'Détails',
     description: {
-      sex: 'Je suis un(e)',
+      sex: 'Je suis un(e)<span class="text-alert-500">*</span>',
       orientation: 'Mon orientation',
       age: 'Mon âge',
       size: 'Ma taille (cm)',
       temper: 'Ma personnalité',
       relationshipGoal: 'Le type de relation recherché',
       childrenSituation: 'Ma situation actuelle concernant les enfants',
-      alcoholConsumption: "Ma consommation d'alcool",
+      alcoholConsumption: 'Ma consommation d’alcool',
       smokingSituation: 'Suis-je fumeur ?',
-      ethnicity: "Je suis principalement d'origine",
+      ethnicity: 'Je suis principalement d’origine',
       politicalView: 'Mon point de vue sur la politique',
       fitness: 'Mon niveau sportif',
       religion: 'Ma foi',
@@ -105,11 +108,11 @@ export default {
       },
       childrenSituation: {
         NOT_AVAILABLE: 'Je préfère garder cela privé',
-        ZERO_DO_NOT_WANT: "Pas d'enfant et ne souhaite pas en avoir",
-        ZERO_WANT: "Pas d'enfant mais souhaite en avoir",
+        ZERO_DO_NOT_WANT: 'Pas d’enfant et ne souhaite pas en avoir',
+        ZERO_WANT: 'Pas d’enfant mais souhaite en avoir',
         HAVE_WANT_MORE: 'Un ou plusieurs enfants et en souhaite plus',
         HAVE_DO_NOT_WANT_MORE:
-          "Un ou plusieurs enfants et n'en souhaite pas plus",
+          'Un ou plusieurs enfants et n’en souhaite pas plus',
       },
       ethnicity: {
         NOT_AVAILABLE: 'Je préfère garder cela privé',
@@ -193,9 +196,9 @@ export default {
       temper: 'Décrivant sa personnalité comme étant ',
       relationshipGoal: 'Recherchant ce type de relation ',
       childrenSituation: 'Sa situation actuelle concernant les enfants',
-      alcoholConsumption: "Sa consommation d'alcool",
+      alcoholConsumption: 'Sa consommation d’alcool',
       smokingSituation: 'Sa consommation de tabac',
-      ethnicity: "Principalement d'origine",
+      ethnicity: 'Principalement d’origine',
       politicalView: 'Se considérant politiquement comme',
       fitness: 'Avec un style de vie',
       religion: 'De confession',
@@ -210,11 +213,11 @@ export default {
       },
       childrenSituation: {
         NOT_AVAILABLE: 'Non renseigné',
-        ZERO_DO_NOT_WANT: "Pas d'enfant et n'en souhaite pas",
-        ZERO_WANT: "Pas d'enfant mais en souhaite",
+        ZERO_DO_NOT_WANT: 'Pas d’enfant et n’en souhaite pas',
+        ZERO_WANT: 'Pas d’enfant mais en souhaite',
         HAVE_WANT_MORE: 'Un ou plusieurs enfants et en souhaite plus',
         HAVE_DO_NOT_WANT_MORE:
-          "Un ou plusieurs enfants et n'en souhaite pas plus",
+          'Un ou plusieurs enfants et n’en souhaite pas plus',
       },
       ethnicity: {
         NOT_AVAILABLE: 'Non renseigné',
@@ -287,7 +290,7 @@ export default {
     pageTitle: 'Gestion des mes photos',
     warning: 'Ton profil doit avoir une photo au minimum',
     manageDescription:
-      "Des photos de bonne qualité te mettant en valeur sont l'atout principal d'un bon profil",
+      'Des photos de bonne qualité te mettant en valeur sont l’atout principal d’un bon profil',
     card: {
       placeholder1: 'Ta meilleure photo en cadrage serré ?',
       placeholder2: 'Une photo plan large serait idéale ici',
@@ -297,24 +300,24 @@ export default {
       placeholder6: '',
     },
     deletion: {
-      modalTitle: "Suppression d'une photo",
+      modalTitle: 'Suppression d’une photo',
       modalExplanation: 'Es-tu certain de vouloir supprimer cette photo ?',
     },
   },
   register: {
     pageTitle: 'Créer un compte',
-    username: "Nom d'utilisateur, vu par les autres profils",
-    email: "Email, l'identifiant du compte",
+    username: 'Nom d’utilisateur, vu par les autres profils',
+    email: 'Email, l’identifiant du compte',
     password: 'Mot de passe',
     confirmPassword: 'Confirmation du mot de passe',
     confirmation: {
       title: 'Ton compte a été créé avec succès !',
       description1:
-        "Un mail de confirmation a été envoyé afin d'activer ton compte.",
+        'Un mail de confirmation a été envoyé afin d’activer ton compte.',
       description2:
         'Une fois ton compte activé, connecte-toi pour mettre à jour ton profil et tes photos puis découvre sans plus tarder les profils aux alentours !',
       description3:
-        "Afin d'affiner tes recherches, n'hésite pas à personnaliser les critères de ton Matcher !",
+        'Afin d’affiner tes recherches, n’hésite pas à personnaliser les critères de ton Matcher !',
       description4:
         'Adrestia te remercie de ta confiance et espère répondre au mieux à tes attentes !',
     },
@@ -340,14 +343,14 @@ export default {
       MONTH: 'Ce mois-ci',
       HALFMONTH: 'Ces 2 dernières semaines',
       WEEK: 'Cette semaine',
-      DAY: "Aujourd'hui",
+      DAY: 'Aujourd’hui',
     },
   },
   state: {
     pageTitle: 'Mettre mon profil en pause',
     periodLabel: 'Mettre mon profil en pause pour la période suivante',
     mainExplanation:
-      "Mettre ton profil en pause signifie que celui-ci sera désactivé pour la période de ton choix (au minimum une semaine) à compter d'aujourd'hui.",
+      'Mettre ton profil en pause signifie que celui-ci sera désactivé pour la période de ton choix (au minimum une semaine) à compter d’aujourd’hui.',
     explanation1:
       'Ton profil ne sera plus visible par les autres utilisateurs durant cette période.',
     explanation2:
@@ -373,8 +376,15 @@ export default {
   },
   resetPassword: {
     pageTitle: 'Réinitialiser mon mot de passe',
+    intro:
+      'Afin de pouvoir réinitialiser ton mot de passe en cas d’oubli, tu dois préalablement avoir créer tes questions/réponses secrètes pour ton compte.',
     resetError:
       'Une erreur s’est produite durant le processus de réinitialisation',
+    result: 'Votre mot de passe a bien été réinitialisé.',
+    result2:
+      'Un mail contenant le nouveau de passe sécurisé vous a été envoyé.',
+    result3:
+      'Vous pouvez choisir de conserver ce dernier ou bien de le modifier via les paramètres de votre compte à votre prochaine authentification.',
   },
   actions: {
     terminate: 'Terminer',
@@ -393,6 +403,8 @@ export default {
     changeCriteria: 'Modifier mon Matcher',
     managePhotos: 'Gérer mes photos',
     logout: 'Se déconnecter',
+    deactivate: 'Mettre en pause mon profil',
+    reactivate: 'Réactiver mon profil',
   },
   errors: {
     usernameContainsWhitespaces: 'L’identifiant ne doit pas contenir d’espaces',

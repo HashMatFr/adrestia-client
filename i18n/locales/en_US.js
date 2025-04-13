@@ -23,11 +23,14 @@ export default {
     configureProfile: 'Modify my infos',
     managePhotos: 'Manage my photos',
     profileStatus: {
-      label: "Your profile's completion state",
-      photoWarning:
-        'Your profile should have at least two photos to be visible, active and able to browse other profiles.',
+      emailValidationWarning:
+        'Your email address has not yet been validated.<span class="text-alert-500">*</span>',
+      activationWarning: 'Your profile currently is in pause mode.',
+      photosWarning:
+        'Your profile should have at least two photos to be visible, active and able to browse other profiles.<span class="text-alert-500">*</span>',
       descriptionWarning:
-        "Your profile's description is not fully completed yet, tell the others a little more about yourself !",
+        'Some infos of your profile’s description are required.<span class="text-alert-500">*</span>',
+      noWarnings: 'Your profile is completed and active.',
     },
   },
   explore: {
@@ -59,7 +62,7 @@ export default {
       toComplete: 'Complete my profile',
       modify: 'Modify my profile',
     },
-    toComplete: "Your profile's description is incomplete",
+    toComplete: 'Your profile’s description is incomplete',
     infos: {
       tabTitle: 'Main',
       job: 'My job',
@@ -82,7 +85,7 @@ export default {
   detail: {
     tabTitle: 'Details',
     description: {
-      sex: 'I am a',
+      sex: 'I am a<span class="text-alert-500">*</span>',
       orientation: 'My sexual orientation',
       age: 'My age',
       size: 'My height',
@@ -301,7 +304,7 @@ export default {
   register: {
     pageTitle: 'Create an account',
     username: 'Username, seen by the other users',
-    email: "Email, your account's identifier",
+    email: 'Email, your account’s identifier',
     password: 'Password',
     confirmPassword: 'Password confirmation',
     confirmation: {
@@ -369,7 +372,14 @@ export default {
   },
   resetPassword: {
     pageTitle: 'Reset password',
+    intro:
+      'To be able to reset your password, you must have created your private secret questions/answers for your account.',
     resetError: 'An error occured during the password reset process',
+    result: 'Your password has been reset with success.',
+    result2:
+      'An email with the new secured password has been sent to your address.',
+    result3:
+      'You can choose to keep this new password for future connections, or to change it in your account settings after your next authentication.',
   },
   actions: {
     terminate: 'Terminate',

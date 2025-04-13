@@ -1,7 +1,7 @@
 export const useStateStore = defineStore('state', {
   state: () => ({
     profileStateId: '',
-    activationState: false,
+    activationState: true,
     profileCanBeReactivated: false,
     availableReactivationDate: '',
     pauseExpiryDate: '',
@@ -9,7 +9,7 @@ export const useStateStore = defineStore('state', {
     subscriptionExpiryDate: '',
     uiTheme: '',
     hasEmailBeenVerified: false,
-    respectMinimumPhotosLimit: false,
+    respectsMinimumPhotosLimit: false,
   }),
   getters: {},
   actions: {},

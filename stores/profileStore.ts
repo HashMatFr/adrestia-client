@@ -3,7 +3,7 @@ export const useProfileStore = defineStore('profile', {
     profileId: '',
     username: '',
     email: '',
-    locale: 'fr',
+    locale: 'FR',
     password: '',
     bio: '',
     enabled: true,
@@ -57,7 +57,11 @@ export const useProfileStore = defineStore('profile', {
     education: 'NOT_AVAILABLE',
     hasSubscription: false,
   }),
-  getters: {},
+  getters: {
+    getUserLocale() {
+      return this.locale.toLowerCase()
+    },
+  },
   actions: {
     setMatcher(payload) {
       this.matcher.matcherId = payload.matcherId

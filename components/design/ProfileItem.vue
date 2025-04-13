@@ -2,7 +2,7 @@
   <div class="flex flex-row gap-5 items-center w-full">
     <slot name="itemIcon"></slot>
     <div class="flex flex-col gap-2 pl-5 border-l border-primary">
-      <Text :value="label" />
+      <HtmlText :value="label" />
       <div v-if="content" class="flex">
         <Text
           v-if="typeof content === 'string'"
@@ -33,6 +33,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import HtmlText from './HtmlText.vue'
 import Text from './Text.vue'
 
 defineProps({

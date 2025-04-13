@@ -8,6 +8,17 @@
       <div class="flex flex-row gap-1.5">
         <LangSwitcher></LangSwitcher>
         <nuxt-link
+          v-if="!route.name.includes('home') && profileStore.profileId"
+          class="flex flex-col gap-2 p-2 items-center rounded"
+          :to="
+            localePath({
+              name: 'home',
+            })
+          "
+        >
+          <House :height="24" :width="24"></House>
+        </nuxt-link>
+        <nuxt-link
           v-if="!route.name.includes('settings') && profileStore.profileId"
           class="flex flex-col gap-2 p-2 items-center rounded"
           :to="
@@ -28,6 +39,7 @@ import Text from '../design/Text.vue'
 import Settings from '../icons/Settings.vue'
 import { useProfileStore } from '~/stores/profileStore'
 import LangSwitcher from '../global/LangSwitcher.vue'
+import House from '../icons/House.vue'
 
 const layoutStore = useLayoutStore()
 const localePath = useLocalePath()

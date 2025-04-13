@@ -1,8 +1,9 @@
 <template>
-  <div class="flex flex-col gap-8 w-full items-center h-full justify-center">
+  <div
+    class="flex flex-col gap-8 w-full items-center h-full justify-center text-primary"
+  >
     <Text
       :value="t('register.confirmation.title')"
-      class="text-primary"
       font-size="xl"
       font-weight="semibold"
     />
@@ -22,7 +23,7 @@
     </div>
     <CustomButton
       :label="t('actions.login')"
-      class="w-full"
+      class="w-full text-black"
       :base="true"
       :outline="true"
       :borderless="false"

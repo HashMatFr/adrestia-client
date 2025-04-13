@@ -17,7 +17,8 @@ export const useStateService = () => {
       stateStore.subscriptionState = response.subscriptionState
       stateStore.subscriptionExpiryDate = response.subscriptionExpiryDate
       stateStore.hasEmailBeenVerified = response.hasEmailBeenVerified
-      stateStore.respectMinimumPhotosLimit = response.respectMinimumPhotosLimit
+      stateStore.respectsMinimumPhotosLimit =
+        response.respectsMinimumPhotosLimit
       stateStore.uiTheme = response.uiTheme
     }
   }

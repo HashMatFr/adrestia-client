@@ -70,7 +70,7 @@ function closeSwitcher(e) {
 
 function updateProfileLocale(code) {
   if (profileStore.profileId) {
-    profileService.updateProfileLocale(code)
+    profileService.updateProfileLocale(code.toUppercase())
   }
   displaySwitch()
 }

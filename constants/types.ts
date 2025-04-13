@@ -191,7 +191,7 @@ export type ProfileState = {
   subscriptionState: boolean
   subscriptionExpiryDate: string
   hasEmailBeenVerified: boolean
-  respectMinimumPhotosLimit: boolean
+  respectsMinimumPhotosLimit: boolean
   uiTheme: string
 }
 
