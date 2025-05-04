@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full">
+  <div class="flex flex-col gap-5 w-full">
     <DetailDisplayCard
       v-if="!isUpdateMode"
       :is-register-flow="false"
@@ -9,6 +9,7 @@
       v-else
       :is-register-flow="false"
       :sex="sex"
+      :orientation="orientation"
       :age="age"
       :size="size"
       :relationship-goal="relationshipGoal"

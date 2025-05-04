@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-2 w-full h-full pt-12 pb-20 text-primary">
     <div
-      class="flex flex-row justify-between w-full px-5 py-3 mt-2 bg-coal-900"
+      class="flex flex-row justify-between w-full px-5 py-3 mt-2 bg-coal-900 items-center"
       @click="openLogoutModal"
     >
       <Text :value="t('actions.logout')"></Text>
@@ -9,7 +9,7 @@
     </div>
 
     <div
-      class="flex flex-row justify-between w-full px-5 py-3 bg-coal-900"
+      class="flex flex-row justify-between w-full px-5 py-3 bg-coal-900 items-center"
       @click="goToStats"
     >
       <Text :value="t('stats.pageTitle')"></Text>
@@ -17,7 +17,7 @@
     </div>
 
     <div
-      class="flex flex-row justify-between w-full px-5 py-3 bg-coal-900"
+      class="flex flex-row justify-between w-full px-5 py-3 bg-coal-900 items-center"
       @click="goToProfileState"
     >
       <Text :value="t('state.pageTitle')"></Text>
@@ -25,7 +25,7 @@
     </div>
 
     <div
-      class="flex flex-row justify-between w-full px-5 py-3 bg-coal-900"
+      class="flex flex-row justify-between w-full px-5 py-3 bg-coal-900 items-center"
       @click="goToUpdatePassword"
     >
       <Text :value="t('updatePassword.pageTitle')"></Text>

@@ -6,16 +6,20 @@
       <nuxt-link
         :class="[
           'flex flex-col gap-2 p-2 items-center rounded',
-          { 'bg-black': route.name.includes('home') },
+          { 'bg-black': route.name.includes('profile') },
         ]"
         :to="
           localePath({
-            name: 'home',
+            name: 'profile',
           })
         "
       >
-        <List :width="24" :height="24"></List>
-        <Text font-size="s" :value="t('actionsBar.home')" class="flex"></Text>
+        <IdBadge :width="24" :height="24"></IdBadge>
+        <Text
+          font-size="s"
+          :value="t('actionsBar.profile')"
+          class="flex"
+        ></Text>
       </nuxt-link>
       <nuxt-link
         :class="[
@@ -111,7 +115,7 @@ import Message from '../icons/Message.vue'
 import { useProfileStore } from '~/stores/profileStore'
 import Criteria from '../icons/Criteria.vue'
 import Heart from '../icons/Heart.vue'
-import List from '../icons/List.vue'
+import IdBadge from '../icons/IdBadge.vue'
 
 const { t } = useI18n()
 const localePath = useLocalePath()

@@ -10,6 +10,7 @@ export const useStateService = () => {
     })
     if (Object.keys(response).length > 0) {
       const stateStore = useStateStore()
+      stateStore.profileStateId = response.profileStateId
       stateStore.activationState = response.activationState
       stateStore.profileCanBeReactivated = response.profileCanBeReactivated
       stateStore.availableReactivationDate = response.availableReactivationDate
@@ -53,10 +54,30 @@ export const useStateService = () => {
     })
   }
 
+  const validateEmailWithCode = (
+    profileStateId: string,
+    validationCode: number,
+  ) => {
+    const url = 'profile-state/validate-email-with-code'
+    return $adrestia(url, {
+      method: 'POST',
+      params: { profileStateId, validationCode },
+    })
+  }
+
+  const resendValidationCode = () => {
+    const url = 'profile-state/resend-validation-code-email'
+    return $adrestia(url, {
+      method: 'POST',
+    })
+  }
+
   return {
     getProfileState,
     deactivateProfile,
     reactivateProfile,
     updateMinimumPhotosLimitStatus,
+    validateEmailWithCode,
+    resendValidationCode,
   }
 }

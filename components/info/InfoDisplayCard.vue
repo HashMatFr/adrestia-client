@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-7 text-primary pb-40">
+  <div class="w-full flex flex-col gap-7 text-primary pb-40">
     <ProfileItem :label="t('profile.infos.username')" :content="username">
       <template #itemIcon
         ><IdBadge :width="28" :height="28"></IdBadge
@@ -35,17 +35,18 @@
     </ProfileItem>
 
     <div
-      class="flex flex-row fixed left-0 w-full p-2 gap-2 bg-coal-800 bottom-20"
+      class="flex flex-col fixed left-0 w-full p-2 gap-2 bg-coal-800 bottom-20"
     >
       <CustomButton
         class="w-full"
-        :label="t('actions.back')"
+        :label="t('actions.managePhotos')"
         :base="true"
         :outline="false"
         :borderless="false"
-        @click="navigateTo(localePath('/home'))"
+        @click="navigateTo(localePath('/photos'))"
       >
-        <template #iconStart> <ArrowLeft class="mr-1.5" /> </template
+        <template #iconStart> <Photo class="mr-3" /> </template>
+        <template #iconEnd> <ArrowLeft class="ml-3 rotate-180" /> </template
       ></CustomButton>
       <CustomButton
         :label="t('actions.modify')"
@@ -54,7 +55,7 @@
         :outline="false"
         :borderless="false"
         @click="onModify()"
-        ><template #iconStart> <Modify class="mr-1.5" /> </template
+        ><template #iconStart> <Modify class="mr-2" /> </template
       ></CustomButton>
     </div>
   </div>
@@ -70,6 +71,8 @@ import IdBadge from '../icons/IdBadge.vue'
 import BusinessCase from '../icons/BusinessCase.vue'
 import Feather from '../icons/Feather.vue'
 import ProfileItem from '../design/ProfileItem.vue'
+import Photo from '../icons/Photo.vue'
+import ArrowLeft from '../icons/ArrowLeft.vue'
 
 const { t } = useI18n()
 const profileStore = useProfileStore()

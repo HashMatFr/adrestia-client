@@ -2,13 +2,13 @@
   <div class="w-full flex flex-col gap-5 px-5 pt-20 pb-5">
     <CustomButton
       :label="t('actions.back')"
-      :base="true"
-      :outline="false"
+      :base="false"
+      :outline="true"
       :borderless="false"
       class="w-fit"
       @click="backToLogin"
     >
-      <template #iconStart> <ArrowLeft class="mr-1.5" /> </template
+      <template #iconStart> <ArrowLeft class="mr-2" /> </template
     ></CustomButton>
 
     <div v-if="displayResetError" class="w-full flex flex-col gap-5">

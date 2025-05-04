@@ -13,6 +13,7 @@ export default {
   },
   actionsBar: {
     home: 'Accueil',
+    profile: 'Profil',
     matcher: 'Matcher',
     explore: 'Découvrir',
     likes: 'Likes',
@@ -20,11 +21,10 @@ export default {
   },
   home: {
     pageTitle: 'Accueil',
-    configureProfile: 'Modifier ma description',
-    managePhotos: 'Gérer mes photos',
     profileStatus: {
+      label: 'Statut de ton profil',
       emailValidationWarning:
-        'Ton email n’a pas encore été validée.<span class="text-alert-500">*</span>',
+        'Ton email n’a pas encore été validé.<span class="text-alert-500">*</span>',
       activationWarning: 'Ton profil est actuellement en pause.',
       photosWarning:
         'Ton profil doit avoir au minimum 2 photos pour être actif et visible.<span class="text-alert-500">*</span>',
@@ -58,10 +58,7 @@ export default {
       'Assure toi que ton profil comporte tes meilleurs photos ! C’est de loin l’atout le plus important d’un bon profil !',
   },
   profile: {
-    pageTitle: {
-      toComplete: 'Compléter mon profil',
-      modify: 'Modifier mon profil',
-    },
+    pageTitle: 'Mon profil',
     toComplete: 'La description de ton profil est incomplète',
     infos: {
       tabTitle: 'Général',
@@ -386,6 +383,20 @@ export default {
     result3:
       'Vous pouvez choisir de conserver ce dernier ou bien de le modifier via les paramètres de votre compte à votre prochaine authentification.',
   },
+  validateEmail: {
+    pageTitle: 'Confirmer mon adresse mail',
+    explanation:
+      'Afin de confirmer ton adresse mail, saisis le code à 6 chiffres que tu as reçu par mail lors de la création de ton compte :',
+    code: 'Code de validation',
+    notReceived:
+      'Tu n’as pas reçu le mail contenant le code de validation (y compris dans le dossier spam) ?',
+    validationSuccess: 'Ton email a été validé avec succès !',
+    validationFailure: 'La validation de ton email a échoué.',
+    resendEmailSuccess:
+      'Un mail contenant le code de validation vient de t’être renvoyé.',
+    resendEmailFailure:
+      'L’envoi du mail contenant le code de validation a échoué.',
+  },
   actions: {
     terminate: 'Terminer',
     validate: 'Valider',
@@ -405,6 +416,8 @@ export default {
     logout: 'Se déconnecter',
     deactivate: 'Mettre en pause mon profil',
     reactivate: 'Réactiver mon profil',
+    resendEmail: 'Renvoyer le mail',
+    retry: 'Réessayer',
   },
   errors: {
     usernameContainsWhitespaces: 'L’identifiant ne doit pas contenir d’espaces',

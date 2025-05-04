@@ -6,9 +6,9 @@
       <Text :value="layoutStore.pageTitle" :font-size="'l'"></Text>
 
       <div class="flex flex-row gap-1.5">
-        <LangSwitcher></LangSwitcher>
+        <LangSwitcher v-if="shouldDisplaySwitcher"></LangSwitcher>
         <nuxt-link
-          v-if="!route.name.includes('home') && profileStore.profileId"
+          v-if="shouldDisplayHome"
           class="flex flex-col gap-2 p-2 items-center rounded"
           :to="
             localePath({
@@ -19,7 +19,7 @@
           <House :height="24" :width="24"></House>
         </nuxt-link>
         <nuxt-link
-          v-if="!route.name.includes('settings') && profileStore.profileId"
+          v-if="shouldDisplaySettings"
           class="flex flex-col gap-2 p-2 items-center rounded"
           :to="
             localePath({
@@ -40,9 +40,27 @@ import Settings from '../icons/Settings.vue'
 import { useProfileStore } from '~/stores/profileStore'
 import LangSwitcher from '../global/LangSwitcher.vue'
 import House from '../icons/House.vue'
+import { computed } from 'vue'
 
 const layoutStore = useLayoutStore()
 const localePath = useLocalePath()
 const route = useRoute()
 const profileStore = useProfileStore()
+
+const shouldDisplaySwitcher = computed(() => {
+  return (
+    route.name.includes('login') ||
+    route.name.includes('register') ||
+    route.name.includes('reset-password') ||
+    route.name.includes('settings')
+  )
+})
+
+const shouldDisplayHome = computed(() => {
+  return !route.name.includes('home') && profileStore.profileId
+})
+
+const shouldDisplaySettings = computed(() => {
+  return !route.name.includes('settings') && profileStore.profileId
+})
 </script>

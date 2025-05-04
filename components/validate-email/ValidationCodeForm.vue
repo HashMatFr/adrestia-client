@@ -1,0 +1,102 @@
+<template>
+  <div class="w-full flex h-full">
+    <form
+      @submit.prevent="submitValidationCode"
+      class="w-full flex flex-col gap-7 h-full"
+    >
+      <div class="w-full flex flex-col gap-3">
+        <Text :value="t('validateEmail.explanation')" />
+        <InputValidationWrapper
+          id="validationCode"
+          ref="validationCodeRef"
+          :label="t('validateEmail.code')"
+          name="validationCode"
+          type="number"
+          :on-change="handleChangeField"
+          :rules="'required'"
+          :value="validationCode.toString()"
+          @is-field-valid="(event) => (form.validationCode = event)"
+        />
+      </div>
+
+      <CustomButton
+        :label="t('actions.validate')"
+        :base="true"
+        :outline="false"
+        :borderless="false"
+        :category="'success'"
+        class="w-full"
+        type="submit"
+      />
+    </form>
+
+    <div class="w-full flex flex-col gap-3">
+      <Text :value="t('validateEmail.notReceived')" />
+      <CustomButton
+        :label="t('actions.resendEmail')"
+        :base="true"
+        :outline="false"
+        :borderless="false"
+        :category="'success'"
+        class="w-full"
+        @click="resendValidationCode()"
+      />
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+import Text from '../design/Text.vue'
+import InputValidationWrapper from '../validation/InputValidationWrapper.vue'
+import CustomButton from '../design/CustomButton.vue'
+import { useStateService } from '~/composables/useStateService'
+import { emailValidationStatesEnum } from '~/constants/enums'
+import { useStateStore } from '~/stores/stateStore'
+
+const emit = defineEmits(['change-state'])
+const { t } = useI18n()
+const stateService = useStateService()
+const stateStore = useStateStore()
+
+// Form setting
+const form = ref({
+  validationCode: false,
+})
+const validationCodeRef = ref(null)
+const validationCode = ref(0)
+
+function handleChangeField(name, value) {
+  if (name === 'validationCode') {
+    validationCode.value = value
+  }
+}
+
+function resendValidationCode() {
+  stateService
+    .resendValidationCode()
+    .then(() => {
+      emit('change-state', emailValidationStatesEnum.emailSent)
+    })
+    .catch((error) => {
+      console.log(error)
+      emit('change-state', emailValidationStatesEnum.emailError)
+    })
+}
+
+function submitValidationCode() {
+  validationCodeRef.value.validate()
+  const isValid = form.value.validationCode
+
+  if (isValid) {
+    stateService
+      .validateEmailWithCode(stateStore.profileStateId, validationCode.value)
+      .then(() => {
+        emit('change-state', emailValidationStatesEnum.validated)
+      })
+      .catch((error) => {
+        console.log(error)
+        emit('change-state', emailValidationStatesEnum.notValidated)
+      })
+  }
+}
+</script>

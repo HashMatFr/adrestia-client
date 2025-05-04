@@ -16,7 +16,6 @@
 import { ref } from 'vue'
 import Tabulation from '~/components/design/Tabulation.vue'
 import DetailCard from '~/components/detail/DetailCard.vue'
-import { useProfileStore } from '~/stores/profileStore'
 import { TabConfig } from '~/constants/types'
 import InfoCard from '~/components/info/InfoCard.vue'
 
@@ -25,19 +24,20 @@ definePageMeta({
   middleware: [],
 })
 const { t } = useI18n()
+const route = useRoute()
+
 const layoutStore = useLayoutStore()
-const profileStore = useProfileStore()
-if (profileStore.detail.sex === 'NOT_AVAILABLE') {
-  layoutStore.pageTitle = t('profile.pageTitle.toComplete')
-} else {
-  layoutStore.pageTitle = t('profile.pageTitle.modify')
-}
+layoutStore.pageTitle = t('profile.pageTitle')
 
 const currentTab = ref(0)
 const profileTabs = ref<Array<TabConfig>>([
   { title: t('profile.infos.tabTitle') },
   { title: t('detail.tabTitle') },
 ])
+
+if (route.query?.description) {
+  changeFocusedTab(1)
+}
 
 function changeFocusedTab(newIndex) {
   currentTab.value = newIndex

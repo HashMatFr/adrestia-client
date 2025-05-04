@@ -184,6 +184,7 @@ export type Stats = {
 }
 
 export type ProfileState = {
+  profileStateId: string
   activationState: boolean
   profileCanBeReactivated: boolean
   availableReactivationDate: string

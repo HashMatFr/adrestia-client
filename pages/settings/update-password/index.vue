@@ -2,13 +2,13 @@
   <div class="flex w-full h-full p-5 pt-16 gap-5">
     <CustomButton
       :label="t('actions.back')"
-      :base="true"
-      :outline="false"
+      :base="false"
+      :outline="true"
       :borderless="false"
       class="w-fit"
       @click="navigateTo(localePath('/settings'))"
     >
-      <template #iconStart> <ArrowLeft class="mr-1.5" /> </template
+      <template #iconStart> <ArrowLeft class="mr-2" /> </template
     ></CustomButton>
   </div>
 </template>

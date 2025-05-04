@@ -54,7 +54,7 @@
           :category="'alert'"
           @click="navigateTo(localePath('/login'))"
         >
-          <template #iconStart> <ArrowLeft class="mr-1.5" /> </template
+          <template #iconStart> <ArrowLeft class="mr-2" /> </template
         ></CustomButton>
         <CustomButton
           class="w-full"
@@ -64,7 +64,7 @@
           :outline="false"
           :borderless="false"
         >
-          <template #iconEnd> <ArrowLeft class="ml-1.5 rotate-180" /> </template
+          <template #iconEnd> <ArrowLeft class="ml-2 rotate-180" /> </template
         ></CustomButton>
       </div>
     </form>

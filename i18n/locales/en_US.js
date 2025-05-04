@@ -13,6 +13,7 @@ export default {
   },
   actionsBar: {
     home: 'Home',
+    profile: 'Profile',
     matcher: 'Matcher',
     explore: 'Discover',
     likes: 'Likes',
@@ -20,9 +21,8 @@ export default {
   },
   home: {
     pageTitle: 'Home',
-    configureProfile: 'Modify my infos',
-    managePhotos: 'Manage my photos',
     profileStatus: {
+      label: 'Profile’s status',
       emailValidationWarning:
         'Your email address has not yet been validated.<span class="text-alert-500">*</span>',
       activationWarning: 'Your profile currently is in pause mode.',
@@ -58,10 +58,7 @@ export default {
       'Be sure to have updated your best photos ! It is the most important asset of a good profile !',
   },
   profile: {
-    pageTitle: {
-      toComplete: 'Complete my profile',
-      modify: 'Modify my profile',
-    },
+    pageTitle: 'My profile',
     toComplete: 'Your profile’s description is incomplete',
     infos: {
       tabTitle: 'Main',
@@ -381,6 +378,20 @@ export default {
     result3:
       'You can choose to keep this new password for future connections, or to change it in your account settings after your next authentication.',
   },
+  validateEmail: {
+    pageTitle: 'Confirm my email address',
+    explanation:
+      'To confirm your email address, enter the 6 digits code you received by email when you created your account:',
+    code: 'Validation code',
+    notReceived:
+      'Did you not received the mail with the validation code (even in the spam folder) ?',
+    validationSuccess: 'Your e-mail address has been validated with success !',
+    validationFailure: 'The validation of your e-mail address failed.',
+    resendEmailSuccess:
+      'A new e-mail containing the validation code has been sent.',
+    resendEmailFailure:
+      'The sending of the e-mail containing the validation code failed.',
+  },
   actions: {
     terminate: 'Terminate',
     validate: 'Validate',
@@ -400,6 +411,8 @@ export default {
     logout: 'Logout',
     deactivate: 'Pause my profile',
     reactivate: 'Reactivate my profile',
+    resendEmail: 'Resend email',
+    retry: 'Retry',
   },
   errors: {
     usernameContainsWhitespaces: 'The username must not contain any spaces.',

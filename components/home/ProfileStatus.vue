@@ -1,5 +1,6 @@
 <template>
   <div class="w-full flex flex-col text-center gap-3">
+    <SectionLabel :label="t('home.profileStatus.label')"></SectionLabel>
     <div
       v-if="!stateStore.hasEmailBeenVerified"
       class="flex flex-row justify-between w-full bg-coal-900 p-3 rounded items-center"
@@ -111,6 +112,7 @@ import ArrowLeft from '../icons/ArrowLeft.vue'
 import Check from '../icons/Check.vue'
 import Photo from '../icons/Photo.vue'
 import HtmlText from '../design/HtmlText.vue'
+import SectionLabel from '../design/SectionLabel.vue'
 
 const { t } = useI18n()
 const stateStore = useStateStore()
@@ -134,6 +136,11 @@ function goToSettingsState() {
 }
 
 function goToProfileDescription() {
-  return navigateTo(localePath('/profile'))
+  return navigateTo({
+    path: localePath('/profile'),
+    query: {
+      description: true,
+    },
+  })
 }
 </script>
