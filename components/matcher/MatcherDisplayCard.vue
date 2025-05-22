@@ -149,7 +149,6 @@
         class="w-full"
         :base="true"
         :outline="false"
-        :borderless="false"
         @click="onModify()"
         ><template #iconStart> <Modify class="mr-2" /> </template
       ></CustomButton>

@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col justify-between h-full">
-    <div class="flex flex-col gap-2 w-full">
-      <Check></Check>
+  <div class="w-full flex flex-col gap-7 h-full">
+    <div class="w-full flex flex-col gap-2">
+      <Check :width="92" :height="92"></Check>
       <Text :value="t('resetPassword.result1')" />
       <Text :value="t('resetPassword.result2')" />
       <Text :value="t('resetPassword.result2')" />
@@ -11,7 +11,6 @@
       :label="t('actions.login')"
       :base="true"
       :outline="false"
-      :borderless="false"
       class="w-fit"
       :category="'success'"
       @click="backToLogin"
@@ -21,8 +20,10 @@
 <script setup lang="ts">
 import Check from '../icons/Check.vue'
 import Text from '../design/Text.vue'
+import CustomButton from '../design/CustomButton.vue'
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 async function backToLogin() {
   return navigateTo(localePath('/login'))

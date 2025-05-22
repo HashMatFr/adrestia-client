@@ -32,7 +32,12 @@
     </div>
 
     <!-- Username and age -->
-    <div class="flex flex-row justify-between w-full p-3 bg-coal-900 mb-1">
+    <SectionLabel
+      :label="
+        profileToBrowse.username + ', ' + String(profileToBrowse.detailDto.age)
+      "
+    ></SectionLabel>
+    <!-- <div class="flex flex-row justify-between w-full p-3 bg-coal-900 mb-1">
       <Text :value="profileToBrowse.username" font-size="xl"></Text>
       <Text
         :value="
@@ -42,7 +47,7 @@
         "
         font-size="xl"
       ></Text>
-    </div>
+    </div> -->
 
     <!-- Main infos -->
     <div class="flex flex-col gap-1 w-full">
@@ -231,7 +236,7 @@ import Size from '../icons/Size.vue'
 import Skyline from '../icons/Skyline.vue'
 import Clock from '../icons/Clock.vue'
 import Chevron from '../icons/Chevron.vue'
-import DetailTag from '../design/detailTag.vue'
+import DetailTag from '../design/DetailTag.vue'
 import { useProfileStore } from '~/stores/profileStore'
 import RelationshipGoal from '../icons/RelationshipGoal.vue'
 import ChildrenSituation from '../icons/ChildrenSituation.vue'
@@ -242,6 +247,7 @@ import AlcoholConsumption from '../icons/AlcoholConsumption.vue'
 import Fitness from '../icons/Fitness.vue'
 import Temper from '../icons/Temper.vue'
 import Balance from '../icons/Balance.vue'
+import SectionLabel from '../design/SectionLabel.vue'
 
 const props = defineProps({
   profileToBrowse: {

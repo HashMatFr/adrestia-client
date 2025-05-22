@@ -2,10 +2,10 @@
   <div class="w-full h-full flex flex-col gap-5">
     <CustomButton
       :label="t('actions.back')"
-      :base="false"
-      :outline="true"
-      :borderless="false"
+      :base="true"
+      :outline="false"
       class="w-fit"
+      :category="'light_mercury'"
       @click="navigateTo(localePath('/settings'))"
     >
       <template #iconStart> <ArrowLeft class="mr-2" /> </template
@@ -40,7 +40,6 @@
         :label="t('actions.deactivate')"
         :base="true"
         :outline="false"
-        :borderless="false"
         class="w-full"
         type="submit"
       />
@@ -53,7 +52,6 @@
       :label="t('actions.reactivate')"
       :base="true"
       :outline="false"
-      :borderless="false"
       :category="'success'"
       class="w-full"
       :disabled="!stateStore.profileCanBeReactivated"
@@ -75,7 +73,6 @@
             :label="t('actions.deactivate')"
             :base="true"
             :outline="false"
-            :borderless="false"
             :category="'success'"
             @click="deactivateProfile"
             ><template #iconStart> <Pause class="mr-2" /> </template
@@ -85,7 +82,6 @@
             :label="t('actions.cancel')"
             :base="true"
             :outline="false"
-            :borderless="false"
             @click="closeModal"
             ><template #iconStart> <ArrowLeft class="mr-2" /> </template
           ></CustomButton>

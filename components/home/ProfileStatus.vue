@@ -1,146 +1,83 @@
 <template>
-  <div class="w-full flex flex-col text-center gap-3">
+  <div class="w-full flex flex-col text-center">
     <SectionLabel :label="t('home.profileStatus.label')"></SectionLabel>
-    <div
-      v-if="!stateStore.hasEmailBeenVerified"
-      class="flex flex-row justify-between w-full bg-coal-900 p-3 rounded items-center"
-    >
-      <HtmlText
-        class="pr-3"
-        :value="t('home.profileStatus.emailValidationWarning')"
-      ></HtmlText>
-      <CustomButton
-        class="h-min"
-        :label="''"
-        :base="true"
-        :outline="false"
-        :borderless="false"
-        :size="'small'"
-        @click="goToValidateEmail()"
-      >
-        <template #iconEnd>
-          <ArrowLeft :height="18" class="rotate-180" /> </template
-      ></CustomButton>
-    </div>
+    <div class="w-full p-2 flex flex-col gap-3 bg-coal-900 rounded">
+      <ProgressCircle
+        :steps="statusSteps"
+        :currentIndex="currentIndex"
+      ></ProgressCircle>
 
-    <div
-      v-if="!stateStore.respectsMinimumPhotosLimit"
-      class="flex flex-row justify-between w-full bg-coal-900 p-3 rounded items-center"
-    >
-      <HtmlText
-        class="pr-3"
-        :value="t('home.profileStatus.photosWarning')"
-      ></HtmlText>
-      <CustomButton
-        class="h-min"
-        :label="''"
-        :base="true"
-        :outline="false"
-        :borderless="false"
-        :size="'small'"
-        @click="goToPhotos()"
+      <div
+        v-if="!stateStore.activationState"
+        class="flex flex-row justify-between w-full items-center"
       >
-        <template #iconEnd> <Photo :height="18" /> </template
-      ></CustomButton>
-    </div>
-
-    <div
-      v-if="!stateStore.activationState"
-      class="flex flex-row justify-between w-full bg-coal-900 p-3 rounded items-center"
-    >
-      <Text
-        class="pr-3"
-        :value="t('home.profileStatus.activationWarning')"
-      ></Text>
-      <CustomButton
-        class="h-min"
-        :label="''"
-        :base="true"
-        :outline="false"
-        :borderless="false"
-        :size="'small'"
-        @click="goToSettingsState()"
-      >
-        <template #iconEnd>
-          <ArrowLeft :height="18" class="rotate-180" /> </template
-      ></CustomButton>
-    </div>
-
-    <div
-      v-if="!isDescriptionCompleted"
-      class="flex flex-row justify-between w-full bg-coal-900 p-3 rounded items-center"
-    >
-      <HtmlText
-        class="pr-3"
-        :value="t('home.profileStatus.descriptionWarning')"
-      ></HtmlText>
-      <CustomButton
-        class="h-min"
-        :label="''"
-        :base="true"
-        :outline="false"
-        :borderless="false"
-        :size="'small'"
-        @click="goToProfileDescription()"
-      >
-        <template #iconEnd>
-          <ArrowLeft :height="18" class="rotate-180" /> </template
-      ></CustomButton>
-    </div>
-
-    <div
-      v-if="
-        isDescriptionCompleted &&
-        stateStore.activationState &&
-        stateStore.respectsMinimumPhotosLimit &&
-        stateStore.hasEmailBeenVerified
-      "
-      class="flex flex-row justify-between w-full bg-coal-900 p-3 rounded items-center"
-    >
-      <Text class="pr-3" :value="t('home.profileStatus.noWarnings')"></Text>
-      <Check :height="18" class="text-success"></Check>
+        <Text
+          class="pr-3"
+          :value="t('home.profileStatus.activationWarning')"
+        ></Text>
+        <CustomButton
+          class="h-min"
+          :label="''"
+          :base="true"
+          :outline="false"
+          :size="'small'"
+          @click="goToSettingsState()"
+        >
+          <template #iconEnd>
+            <ArrowLeft :height="18" class="rotate-180" /> </template
+        ></CustomButton>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { useStateStore } from '~/stores/stateStore'
 import Text from '../design/Text.vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useProfileStore } from '~/stores/profileStore'
 import CustomButton from '../design/CustomButton.vue'
 import ArrowLeft from '../icons/ArrowLeft.vue'
-import Check from '../icons/Check.vue'
-import Photo from '../icons/Photo.vue'
-import HtmlText from '../design/HtmlText.vue'
 import SectionLabel from '../design/SectionLabel.vue'
+import ProgressCircle from './ProgressCircle.vue'
+import { ProgressStep } from '~/constants/types'
 
 const { t } = useI18n()
 const stateStore = useStateStore()
 const profileStore = useProfileStore()
 
-const isDescriptionCompleted = computed(() => {
-  return profileStore.detail.sex !== 'NOT_AVAILABLE'
+const statusSteps = ref<ProgressStep[]>([
+  {
+    stepLabel: t('home.profileStatus.emailValidationWarning'),
+    stepRequiredPage: '/validate-email',
+  },
+  {
+    stepLabel: t('home.profileStatus.photosWarning'),
+    stepRequiredPage: '/photos',
+  },
+  {
+    stepLabel: t('home.profileStatus.descriptionWarning'),
+    stepRequiredPage: '/profile?description=true',
+  },
+  {
+    stepLabel: t('home.profileStatus.noWarnings'),
+    stepRequiredPage: '/home',
+  },
+])
+
+const currentIndex = computed(() => {
+  let index = statusSteps.value.length
+  if (!stateStore.hasEmailBeenVerified) {
+    index = 1
+  } else if (!stateStore.respectsMinimumPhotosLimit) {
+    index = 2
+  } else if (profileStore.detail.sex !== 'NOT_AVAILABLE') {
+    index = 3
+  }
+  return index
 })
 
 const localePath = useLocalePath()
-function goToValidateEmail() {
-  return navigateTo(localePath('/validate-email'))
-}
-
-function goToPhotos() {
-  return navigateTo(localePath('/photos'))
-}
-
 function goToSettingsState() {
   return navigateTo(localePath('/settings/state'))
-}
-
-function goToProfileDescription() {
-  return navigateTo({
-    path: localePath('/profile'),
-    query: {
-      description: true,
-    },
-  })
 }
 </script>

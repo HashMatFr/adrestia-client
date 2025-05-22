@@ -120,9 +120,9 @@
       <CustomButton
         class="w-full"
         :label="t('actions.back')"
-        :base="false"
-        :outline="true"
-        :borderless="false"
+        :base="true"
+        :outline="false"
+        :category="'light_mercury'"
         @click="navigateTo(localePath('/home'))"
       >
         <template #iconStart> <ArrowLeft class="mr-2" /> </template
@@ -132,7 +132,6 @@
         class="w-full"
         :base="true"
         :outline="false"
-        :borderless="false"
         @click="onModify()"
         ><template #iconStart> <Modify class="mr-2" /> </template
       ></CustomButton>

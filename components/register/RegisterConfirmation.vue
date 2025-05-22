@@ -26,7 +26,6 @@
       class="w-full text-black"
       :base="true"
       :outline="true"
-      :borderless="false"
       @click="navigateTo(localePath('/login'))"
     />
   </div>

@@ -42,7 +42,6 @@
         :label="t('actions.managePhotos')"
         :base="true"
         :outline="false"
-        :borderless="false"
         @click="navigateTo(localePath('/photos'))"
       >
         <template #iconStart> <Photo class="mr-3" /> </template>
@@ -53,7 +52,6 @@
         class="w-full"
         :base="true"
         :outline="false"
-        :borderless="false"
         @click="onModify()"
         ><template #iconStart> <Modify class="mr-2" /> </template
       ></CustomButton>

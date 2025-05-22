@@ -11,6 +11,14 @@ export default {
       resetPassword: 'Réinitialiser mon mot de passe',
     },
   },
+  tou: {
+    warning:
+      'En créant mon compte, j’accepte les conditions générales d’utilisation suivantes :',
+    title: 'Conditions générales d’utilisation',
+    content: {
+      section1: 'titre section 1',
+    },
+  },
   actionsBar: {
     home: 'Accueil',
     profile: 'Profil',
@@ -23,13 +31,12 @@ export default {
     pageTitle: 'Accueil',
     profileStatus: {
       label: 'Statut de ton profil',
-      emailValidationWarning:
-        'Ton email n’a pas encore été validé.<span class="text-alert-500">*</span>',
+      emailValidationWarning: 'Ton e-mail n’a pas encore été validé.',
       activationWarning: 'Ton profil est actuellement en pause.',
       photosWarning:
-        'Ton profil doit avoir au minimum 2 photos pour être actif et visible.<span class="text-alert-500">*</span>',
+        'Ton profil doit avoir au minimum 2 photos pour être actif et visible.',
       descriptionWarning:
-        'Certaines informations manquantes de ta description sont requises.<span class="text-alert-500">*</span>',
+        'Certaines informations manquantes de ta description sont requises.',
       noWarnings: 'Ton profil est complet et actif.',
     },
   },
@@ -370,6 +377,8 @@ export default {
   },
   updatePassword: {
     pageTitle: 'Modifier mon mot de passe',
+    success: 'Ton mot de passe a été modifié avec succès !',
+    error: 'La modification de ton mot de passe a échoué.',
   },
   resetPassword: {
     pageTitle: 'Réinitialiser mon mot de passe',
@@ -390,12 +399,20 @@ export default {
     code: 'Code de validation',
     notReceived:
       'Tu n’as pas reçu le mail contenant le code de validation (y compris dans le dossier spam) ?',
-    validationSuccess: 'Ton email a été validé avec succès !',
-    validationFailure: 'La validation de ton email a échoué.',
+    validationSuccess: 'Ton e-mail a été validé avec succès !',
+    validationFailure: 'La validation de ton e-mail a échoué.',
     resendEmailSuccess:
       'Un mail contenant le code de validation vient de t’être renvoyé.',
     resendEmailFailure:
       'L’envoi du mail contenant le code de validation a échoué.',
+  },
+  subscription: {
+    expiredSubscription:
+      'Ton abonnement est expiré depuis {date}. Souhaiterais-tu le renouveler ?',
+    subscribedUntil:
+      'Ton abonnement se termine le {date}. Souhaiterais-tu le prolonger ?',
+    notSubscribed:
+      'Ton compte ne dispose d’aucun abonnement actif. Souhaiterais-tu utiliser pleinement l’appli ?',
   },
   actions: {
     terminate: 'Terminer',
@@ -418,6 +435,8 @@ export default {
     reactivate: 'Réactiver mon profil',
     resendEmail: 'Renvoyer le mail',
     retry: 'Réessayer',
+    accept: 'Accepter',
+    refuse: 'Refuser',
   },
   errors: {
     usernameContainsWhitespaces: 'L’identifiant ne doit pas contenir d’espaces',
@@ -425,13 +444,16 @@ export default {
       'Le premier caractère doit être une lettre',
     mandatoryField: 'Ce champ est obligatoire',
     mustNotContainANumber: 'Ce champ ne doit pas contenir de chiffre',
+    minDigits: 'Ce champ doit contenir au minimum {limit} chiffres',
+    maxDigits: 'Ce champ doit contenir au maximum {limit} chiffres',
+    equalDigits: 'Ce champ doit contenir {limit} chiffres',
     minLength: 'Ce champ doit contenir au minimum {limit} caractères',
     maxLength: '{limit} caractères au maximum sont autorisés pour ce champ',
     email: {
       invalid: 'Adresse e-mail invalide',
-      alreadyUsed: 'Cette adresse email est déjà utilisée',
+      alreadyUsed: 'Cette adresse e-mail est déjà utilisée',
       matching: 'L’ adresse e-mail et sa confirmation sont différentes',
-      sameAsOld: 'Ta nouvelle adresse email est identique à ton ancienne',
+      sameAsOld: 'Ta nouvelle adresse e-mail est identique à ton ancienne',
     },
     password: {
       incorrect: 'Le mot de passe est incorrect',

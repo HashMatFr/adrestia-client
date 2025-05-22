@@ -8,8 +8,8 @@
         :for="id"
         :class="[
           {
-            'text-alert-700': invalid,
-            'text-success-700': valid,
+            'text-alert-500': invalid,
+            'text-success-500': valid,
             'text-primary': !valid && !invalid && !warning,
             'font-nunitoSans': labelFontFamily === 'NunitoSans',
             'text-4xl leading-11': labelFontSize === '4xl',
@@ -54,8 +54,8 @@
           'h-full pl-5': type === 'search',
           border: !isFocus && type !== 'search',
           'bg-interaction-disabled': disabled,
-          'bg-success-50 border-success-700 text-success-700': valid,
-          'bg-alert-50 border-alert-700 text-alert-700': invalid,
+          'bg-success-50 border-success-500 text-success-500': valid,
+          'bg-alert-50 border-alert-500 text-alert-500': invalid,
           'border-main-500': isFocus && type !== 'search',
         },
       ]"
@@ -66,8 +66,8 @@
           'hidden lg:block mr-3 text-disabled mt-2',
           {
             'lg:hidden': isFocus,
-            'text-success-700': valid,
-            'text-alert-700': invalid,
+            'text-success-500': valid,
+            'text-alert-500': invalid,
           },
         ]"
       />
@@ -88,8 +88,8 @@
         :class="[
           'w-full bg-transparent focus:outline-none focus:',
           {
-            'placeholder-success-700': valid,
-            'placeholder-alert-700': invalid,
+            'placeholder-success-500': valid,
+            'placeholder-alert-500': invalid,
             'text-primary': !valid && !invalid && !warning,
             'text-4xl leading-11': placeHolderFontSize === '4xl',
             'text-3xl leading-9': placeHolderFontSize === '3xl',
@@ -114,7 +114,7 @@
         :class="[
           'transform rotate-180',
           {
-            'text-alert-700': invalid,
+            'text-alert-500': invalid,
           },
         ]"
       />
@@ -126,8 +126,8 @@
       :class="[
         'leading-5 font-sans pt-0.5',
         {
-          'text-success-700': valid,
-          'text-alert-700': invalid,
+          'text-success-500': valid,
+          'text-alert-500': invalid,
           'text-secondary': !invalid && !valid && !warning,
         },
       ]"

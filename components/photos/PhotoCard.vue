@@ -3,8 +3,8 @@
     :class="[
       'relative flex w-full h-72 bg-coal-900 rounded',
       {
-        'border-3 border-solid border-main-500': isCardFocused,
-        'border-2 border-dashed border-main-200': !isCardFocused,
+        'border-2 border-solid border-main-500': isCardFocused,
+        'border-2 border-dashed border-light_mercury': !isCardFocused,
       },
     ]"
     @click="focusCard"
@@ -21,7 +21,6 @@
         class="w-full"
         :base="true"
         :outline="false"
-        :borderless="false"
         :category="'alert'"
         @click="deletePhoto"
         ><template #iconStart> <GarbageCan /> </template
@@ -31,7 +30,6 @@
         class="w-full"
         :base="true"
         :outline="false"
-        :borderless="false"
         @click="modifyPhoto"
         ><template #iconStart> <Modify /> </template
       ></CustomButton>
@@ -40,7 +38,6 @@
         class="w-full"
         :base="true"
         :outline="false"
-        :borderless="false"
         :category="'success'"
         @click="addPhoto"
         ><template #iconStart> <Plus /> </template

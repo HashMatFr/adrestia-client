@@ -38,7 +38,6 @@
           :category="'success'"
           :base="true"
           :outline="false"
-          :borderless="false"
         >
         </CustomButton>
       </div>

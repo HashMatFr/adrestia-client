@@ -8,7 +8,6 @@
         <CustomButton
           :base="true"
           :outline="false"
-          :borderless="false"
           :category="'alert'"
           :label="t('actions.dislike')"
           class="w-full"
@@ -19,7 +18,6 @@
           v-if="isRewindAvailable"
           :base="true"
           :outline="false"
-          :borderless="false"
           :label="t('actions.rewind')"
           class="w-full"
           @click="rewindToPreviousProfile"
@@ -28,7 +26,6 @@
         <CustomButton
           :base="true"
           :outline="false"
-          :borderless="false"
           :category="'success'"
           :label="t('actions.like')"
           class="w-full"
@@ -53,7 +50,6 @@
               :label="t('actions.goToNewMatch')"
               :base="true"
               :outline="false"
-              :borderless="false"
               :category="'alert'"
               @click="goToNewMatch"
               ><template #iconStart> <GarbageCan class="mr-2" /> </template
@@ -63,7 +59,6 @@
               :label="t('actions.continueBrowsing')"
               :base="true"
               :outline="false"
-              :borderless="false"
               @click="continueBrowsing"
               ><template #iconStart> <ArrowLeft class="mr-2" /> </template
             ></CustomButton>
@@ -83,7 +78,6 @@
         <CustomButton
           :base="true"
           :outline="false"
-          :borderless="false"
           :label="t('actions.changeCriteria')"
           @click="goToMatcherPage"
           ><template #iconStart> <Modify class="mr-2" /> </template

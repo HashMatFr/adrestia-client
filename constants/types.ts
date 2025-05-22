@@ -203,3 +203,8 @@ export type ResetPassword = {
   secondSecretQuestion: string
   secondSecretAnswer: string
 }
+
+export type ProgressStep = {
+  stepLabel: string
+  stepRequiredPage: string
+}

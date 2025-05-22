@@ -2,10 +2,10 @@
   <div class="w-full flex flex-col gap-5 px-5 pt-20 pb-5">
     <CustomButton
       :label="t('actions.back')"
-      :base="false"
-      :outline="true"
-      :borderless="false"
+      :base="true"
+      :outline="false"
       class="w-fit"
+      :category="'light_mercury'"
       @click="backToLogin"
     >
       <template #iconStart> <ArrowLeft class="mr-2" /> </template

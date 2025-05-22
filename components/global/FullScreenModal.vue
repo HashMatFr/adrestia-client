@@ -3,21 +3,19 @@
     name="fullScreenModal"
     class="full-screen-modal-mask fixed w-full h-full top-0 left-0"
   >
-    <div class="bg-white h-screen fixed top-0 left-0 overflow-y-auto">
+    <div class="bg-coal-800 h-screen fixed top-0 left-0 overflow-y-auto">
       <div
         :class="['flex justify-end items-center px-6 h-16 text-left', navClass]"
       >
         <slot name="modalHeader"></slot>
-        <CustomButton :base="false" :outline="true" :borderless="false">
-          <template #iconEnd> <Cross /> </template
-        ></CustomButton>
-        <button
+        <CustomButton
           name="closeModal"
-          class="text-interaction focus:outline-none"
+          :base="false"
+          :outline="false"
           @click="onModalClose()"
         >
-          <Cross />
-        </button>
+          <template #iconEnd> <Cross /> </template
+        ></CustomButton>
       </div>
       <slot name="modalContent"></slot>
     </div>

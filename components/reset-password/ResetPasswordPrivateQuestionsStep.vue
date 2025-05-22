@@ -2,7 +2,7 @@
   <div class="w-full flex h-full">
     <form
       @submit.prevent="submitAnswers"
-      class="w-full flex flex-col justify-between h-full"
+      class="w-full flex flex-col gap-7 h-full"
     >
       <div class="flex flex-col w-full gap-5">
         <div class="flex flex-col gap-2 w-full">
@@ -36,7 +36,6 @@
         :label="t('actions.validate')"
         :base="true"
         :outline="false"
-        :borderless="false"
         :category="'success'"
         class="w-full"
         type="submit"

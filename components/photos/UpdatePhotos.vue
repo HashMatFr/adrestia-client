@@ -26,7 +26,6 @@
         class="w-full text-accent-500"
         :base="true"
         :outline="false"
-        :borderless="false"
         :disabled="
           photosStore.filesReferences[photosStore.focusedCard].fileIndex === 0
         "
@@ -37,7 +36,6 @@
         class="w-full text-accent-500"
         :base="true"
         :outline="false"
-        :borderless="false"
         :disabled="
           !photosStore.filesReferences[photosStore.focusedCard + 1].fileIndex
         "
@@ -59,7 +57,6 @@
             :label="t('actions.delete')"
             :base="true"
             :outline="false"
-            :borderless="false"
             :category="'alert'"
             @click="deletePhoto"
             ><template #iconStart> <GarbageCan class="mr-2" /> </template
@@ -69,7 +66,6 @@
             :label="t('actions.cancel')"
             :base="true"
             :outline="false"
-            :borderless="false"
             @click="closeModal"
             ><template #iconStart> <ArrowLeft class="mr-2" /> </template
           ></CustomButton>

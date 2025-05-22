@@ -45,7 +45,6 @@
             :label="t('actions.logout')"
             :base="true"
             :outline="false"
-            :borderless="false"
             :category="'success'"
             @click="logout"
             ><template #iconStart> <CircleArrow class="mr-2" /> </template
@@ -55,7 +54,6 @@
             :label="t('actions.cancel')"
             :base="true"
             :outline="false"
-            :borderless="false"
             @click="closeLogoutModal"
             ><template #iconStart> <ArrowLeft class="mr-2" /> </template
           ></CustomButton>

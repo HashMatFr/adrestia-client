@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full">
+  <div class="flex w-full pb-40">
     <form
       novalidate
       @submit.prevent="submitForm"
@@ -44,27 +44,25 @@
         @update-password-status="(event) => (form.passwordFields = event)"
       />
 
-      <div class="fixed bottom-0 left-0 w-full px-5 py-5 flex flex-row gap-5">
+      <div
+        class="fixed bottom-0 left-0 w-full px-5 py-5 flex flex-row gap-5 bg-coal-800"
+      >
         <CustomButton
           class="w-full"
-          :label="t('actions.cancel')"
+          :label="t('actions.previous')"
           :base="true"
           :outline="false"
-          :borderless="false"
-          :category="'alert'"
-          @click="navigateTo(localePath('/login'))"
+          @click="goToPreviousStep"
         >
           <template #iconStart> <ArrowLeft class="mr-2" /> </template
         ></CustomButton>
         <CustomButton
           class="w-full"
           type="submit"
-          :label="t('actions.next')"
+          :label="t('actions.validate')"
           :base="true"
           :outline="false"
-          :borderless="false"
-        >
-          <template #iconEnd> <ArrowLeft class="ml-2 rotate-180" /> </template
+          :category="'success'"
         ></CustomButton>
       </div>
     </form>
@@ -82,11 +80,10 @@ import InputValidationWrapper from '../validation/InputValidationWrapper.vue'
 import RegisterPasswordFields from './RegisterPasswordFields.vue'
 import Text from '../design/Text.vue'
 
-const emit = defineEmits(['next-step'])
+const emit = defineEmits(['next-step', 'previous-step'])
 const { t } = useI18n()
 const profileStore = useProfileStore()
 const layoutStore = useLayoutStore()
-const localePath = useLocalePath()
 const profileService = useProfileService()
 
 const username = ref('')
@@ -148,6 +145,13 @@ function nextRegisterStep() {
   profileStore.password = password.value
   profileStore.email = email.value
   emit('next-step')
+}
+
+function goToPreviousStep() {
+  profileStore.username = ''
+  profileStore.password = ''
+  profileStore.email = ''
+  emit('previous-step')
 }
 
 function handleChangeField(name, value) {

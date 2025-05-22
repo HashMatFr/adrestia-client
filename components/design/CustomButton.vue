@@ -16,6 +16,8 @@
           base && category === 'alert',
         'border-2 border-white border-opacity-0 bg-success-500 text-primary disabled:text-disabled disabled:bg-interaction-disabled':
           base && category === 'success',
+        'border-2 border-white border-opacity-0 bg-light_mercury text-contrast disabled:text-disabled disabled:bg-interaction-disabled':
+          base && category === 'light_mercury',
 
         'text-coal-500 border-2 border-coal-500 disabled:text-disabled disabled:border-light':
           outline && category === 'coal',
@@ -25,15 +27,8 @@
           outline && category === 'alert',
         'text-success-500 border-2 border-success-500 disabled:text-disabled':
           outline && category === 'success',
-
-        'border-2 border-white border-opacity-0 text-main-500 disabled:text-disabled':
-          borderless && category === 'main',
-        'border-2 border-white border-opacity-0 text-coal-500 disabled:text-disabled':
-          borderless && category === 'coal',
-        'border-2 border-white border-opacity-0 text-alert-500 disabled:text-disabled':
-          borderless && category === 'alert',
-        'border-2 border-white border-opacity-0 text-success-500 disabled:text-disabled':
-          borderless && category === 'success',
+        'text-light_mercury border-2 border-light_mercury-500 disabled:text-disabled':
+          outline && category === 'light_mercury',
 
         iconSmall: label === '' && size === 'small',
         iconMedium: label === '' && size === 'medium',
@@ -42,7 +37,6 @@
     ]"
     @click="onClick"
     :disabled="disabled"
-    :borderless="borderless"
   >
     <slot name="iconStart"></slot>
     <Text
@@ -92,15 +86,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  borderless: {
-    type: Boolean,
-    default: false,
-  },
   category: {
     type: String,
     default: 'main',
     validator: function (value: string) {
-      return ['main', 'coal', 'alert', 'success'].indexOf(value) !== -1
+      return (
+        ['main', 'coal', 'alert', 'success', 'light_mercury'].indexOf(value) !==
+        -1
+      )
     },
   },
 })

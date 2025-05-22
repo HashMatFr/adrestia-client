@@ -29,6 +29,7 @@ module.exports = {
       transparent: 'transparent',
       disabled: '#707077',
       red: '#e71b29',
+      light_mercury: '#ededed',
       interaction: {
         DEFAULT: '#0281c7',
         active: '#075785',

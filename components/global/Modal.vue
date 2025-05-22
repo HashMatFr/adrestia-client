@@ -8,12 +8,7 @@
         ]"
       >
         <slot name="modalHeader"></slot>
-        <CustomButton
-          :base="false"
-          :outline="true"
-          :borderless="false"
-          @click="onModalClose()"
-        >
+        <CustomButton :base="false" :outline="true" @click="onModalClose()">
           <template #iconEnd> <Cross /> </template
         ></CustomButton>
       </div>

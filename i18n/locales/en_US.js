@@ -11,6 +11,13 @@ export default {
       resetPassword: 'Reset my password',
     },
   },
+  tou: {
+    warning: 'By creation my account, I accept the following terms of use:',
+    title: 'Terms of use',
+    content: {
+      section1: 'title section 1',
+    },
+  },
   actionsBar: {
     home: 'Home',
     profile: 'Profile',
@@ -23,13 +30,12 @@ export default {
     pageTitle: 'Home',
     profileStatus: {
       label: 'Profile’s status',
-      emailValidationWarning:
-        'Your email address has not yet been validated.<span class="text-alert-500">*</span>',
+      emailValidationWarning: 'Your e-mail address has not yet been validated.',
       activationWarning: 'Your profile currently is in pause mode.',
       photosWarning:
-        'Your profile should have at least two photos to be visible, active and able to browse other profiles.<span class="text-alert-500">*</span>',
+        'Your profile should have at least two photos to be visible, active and able to browse other profiles.',
       descriptionWarning:
-        'Some infos of your profile’s description are required.<span class="text-alert-500">*</span>',
+        'Some infos of your profile’s description are required.',
       noWarnings: 'Your profile is completed and active.',
     },
   },
@@ -374,14 +380,14 @@ export default {
     resetError: 'An error occured during the password reset process',
     result: 'Your password has been reset with success.',
     result2:
-      'An email with the new secured password has been sent to your address.',
+      'An e-mail with the new secured password has been sent to your address.',
     result3:
       'You can choose to keep this new password for future connections, or to change it in your account settings after your next authentication.',
   },
   validateEmail: {
-    pageTitle: 'Confirm my email address',
+    pageTitle: 'Confirm my e-mail address',
     explanation:
-      'To confirm your email address, enter the 6 digits code you received by email when you created your account:',
+      'To confirm your e-mail address, enter the 6 digits code you received by e-mail when you created your account:',
     code: 'Validation code',
     notReceived:
       'Did you not received the mail with the validation code (even in the spam folder) ?',
@@ -391,6 +397,14 @@ export default {
       'A new e-mail containing the validation code has been sent.',
     resendEmailFailure:
       'The sending of the e-mail containing the validation code failed.',
+  },
+  subscription: {
+    expiredSubscription:
+      'Your subscription expired since {date}. Would you like to renew it ?',
+    subscribedUntil:
+      'Your subscription end {date}. Would you like to extend it ?',
+    notSubscribed:
+      'Your account does not have any active subscription. Would you like to fully use the app ?',
   },
   actions: {
     terminate: 'Terminate',
@@ -411,23 +425,28 @@ export default {
     logout: 'Logout',
     deactivate: 'Pause my profile',
     reactivate: 'Reactivate my profile',
-    resendEmail: 'Resend email',
+    resendEmail: 'Resend e-mail',
     retry: 'Retry',
+    accept: 'Accept',
+    refuse: 'Refuse',
   },
   errors: {
     usernameContainsWhitespaces: 'The username must not contain any spaces.',
     usernameFirstCharacterMustBeALetter: 'The first character must be a letter',
     mandatoryField: 'This field is mandatory',
     mustNotContainANumber: 'This field must not contain a number',
-    minLength: 'This field must contain at least {limit} characters.',
+    superiorThan: 'This field must be  at least {limit} characters.',
+    minDigits: 'This field must contain at least {limit} digits.',
+    maxDigits: 'This field must contain at max {limit} digits.',
+    equalDigits: 'This field must contain {limit} digits.',
     maxLength: 'This field must contain at max {limit} characters.',
     expectedDateFormat: 'The expected format is DD/MM/YYYY',
     invalidFileSize: 'The selected photo’s size is greater than {limit} Mo',
     invalidFileExtension: 'The selected file extension is invalid',
     email: {
-      invalid: 'This email address is incorrect',
-      alreadyUsed: 'This email is already used',
-      matching: 'The email address and its confirmation are different',
+      invalid: 'This e-mail address is incorrect',
+      alreadyUsed: 'This e-mail is already used',
+      matching: 'The e-mail address and its confirmation are different',
       sameAsOld: 'The new e-mail address is the same as your old one.',
     },
     password: {

@@ -66,6 +66,27 @@ export const useValidationRules = () => {
     return true
   }
 
+  const minDigits = (value: number, limit: number) => {
+    if (!value || String(value).length < limit) {
+      return t('errors.minDigits', { limit })
+    }
+    return true
+  }
+
+  const maxDigits = (value: number, limit: number) => {
+    if (!value || String(value).length > limit) {
+      return t('errors.maxDigits', { limit })
+    }
+    return true
+  }
+
+  const equalDigits = (value: number, limit: number) => {
+    if (!value || String(value).length !== limit) {
+      return t('errors.equalDigits', { limit })
+    }
+    return true
+  }
+
   const min = (value, limit) => {
     if (!value || value.length < limit) {
       return t('errors.minLength', { limit })
@@ -181,6 +202,9 @@ export const useValidationRules = () => {
     email,
     confirmedEmail,
     emailShouldNotBeTheSameAsOld,
+    minDigits,
+    maxDigits,
+    equalDigits,
     min,
     max,
     passwordLength,

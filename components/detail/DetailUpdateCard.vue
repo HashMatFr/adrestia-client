@@ -203,7 +203,6 @@
             class="w-full"
             :base="true"
             :outline="false"
-            :borderless="false"
             :category="'alert'"
             @click="onCancel"
           />
@@ -211,7 +210,6 @@
             :label="t('actions.validate')"
             :base="true"
             :outline="false"
-            :borderless="false"
             :category="'success'"
             class="w-full"
             type="submit"

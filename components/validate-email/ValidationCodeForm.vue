@@ -1,11 +1,11 @@
 <template>
-  <div class="w-full flex h-full">
+  <div class="w-full flex flex-col h-full gap-10">
     <form
       @submit.prevent="submitValidationCode"
-      class="w-full flex flex-col gap-7 h-full"
+      class="w-full flex flex-col gap-5 h-full"
     >
       <div class="w-full flex flex-col gap-3">
-        <Text :value="t('validateEmail.explanation')" />
+        <Text class="text-center" :value="t('validateEmail.explanation')" />
         <InputValidationWrapper
           id="validationCode"
           ref="validationCodeRef"
@@ -13,7 +13,7 @@
           name="validationCode"
           type="number"
           :on-change="handleChangeField"
-          :rules="'required'"
+          :rules="'required|equalDigits:6'"
           :value="validationCode.toString()"
           @is-field-valid="(event) => (form.validationCode = event)"
         />
@@ -23,7 +23,6 @@
         :label="t('actions.validate')"
         :base="true"
         :outline="false"
-        :borderless="false"
         :category="'success'"
         class="w-full"
         type="submit"
@@ -31,13 +30,11 @@
     </form>
 
     <div class="w-full flex flex-col gap-3">
-      <Text :value="t('validateEmail.notReceived')" />
+      <Text class="text-center" :value="t('validateEmail.notReceived')" />
       <CustomButton
         :label="t('actions.resendEmail')"
         :base="true"
         :outline="false"
-        :borderless="false"
-        :category="'success'"
         class="w-full"
         @click="resendValidationCode()"
       />

@@ -33,7 +33,6 @@
           <CustomButton
             :base="true"
             :outline="false"
-            :borderless="false"
             class="w-full"
             @click="likesStore.focusedGiverProfileToBrowse = {}"
             ><template #iconStart> <ArrowLeft class="mr-2" /> </template
@@ -41,7 +40,6 @@
           <CustomButton
             :base="true"
             :outline="false"
-            :borderless="false"
             :category="'alert'"
             class="w-full"
             @click="doNotMatchProfile"
@@ -50,7 +48,6 @@
           <CustomButton
             :base="true"
             :outline="false"
-            :borderless="false"
             :category="'success'"
             class="w-full"
             @click="matchProfile"
@@ -74,7 +71,6 @@
                 :label="t('actions.goToNewMatch')"
                 :base="true"
                 :outline="false"
-                :borderless="false"
                 :category="'alert'"
                 @click="goToNewMatch"
                 ><template #iconStart> <GarbageCan class="mr-2" /> </template
@@ -84,7 +80,6 @@
                 :label="t('actions.continueBrowsing')"
                 :base="true"
                 :outline="false"
-                :borderless="false"
                 @click="continueToManageLikes"
                 ><template #iconStart> <ArrowLeft class="mr-2" /> </template
               ></CustomButton>
@@ -105,7 +100,6 @@
         <CustomButton
           :base="true"
           :outline="false"
-          :borderless="false"
           :label="t('actions.managePhotos')"
           @click="goToPhotosPage"
           ><template #iconStart> <Modify class="mr-2" /> </template

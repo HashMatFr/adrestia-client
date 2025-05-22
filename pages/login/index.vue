@@ -5,14 +5,12 @@
       :label="t('login.register.createAccount')"
       :base="true"
       :outline="false"
-      :borderless="false"
       @click="createAccount"
     ></CustomButton>
     <CustomButton
       :label="t('login.register.forgottenPassword')"
       :base="true"
       :outline="false"
-      :borderless="false"
       @click="resetPassword"
       ><template #iconStart> <ResetArrow class="mr-2" /> </template
     ></CustomButton>
