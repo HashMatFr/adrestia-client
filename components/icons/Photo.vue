@@ -7,8 +7,9 @@
       viewBox="0 0 22 22"
     >
       <path
-        d="M2 0.5H20C20.8284 0.5 21.5 1.17157 21.5 2V20C21.5 20.8284 20.8284 21.5 20 21.5H2C1.17157 21.5 0.5 20.8284 0.5 20V2C0.5 1.17157 1.17157 0.5 2 0.5Z"
-        class="fill-none stroke-current"
+        d="M2 2H20V-2H2V2ZM20 2V20H24V2H20ZM20 20H2V24H20V20ZM2 20V2H-2V20H2ZM2 20H2H-2C-2 22.2091 -0.20914 24 2 24V20ZM20 20V24C22.2091 24 24 22.2091 24 20H20ZM20 2H24C24 -0.209138 22.2091 -2 20 -2V2ZM2 -2C-0.209138 -2 -2 -0.20914 -2 2H2V2V-2Z"
+        class="fill-current"
+        mask="url(#path-1-inside-1_39_11)"
       />
       <circle cx="6.5" cy="6.5" r="2.5" class="fill-current" />
       <path

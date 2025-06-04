@@ -210,16 +210,6 @@
             ><Fitness :width="24" :height="24"></Fitness
           ></template>
         </DetailTag>
-        <DetailTag
-          :value="t('detail.enums.temper.' + profileToBrowse.detailDto.temper)"
-          :should-be-highlighted="
-            profileToBrowse.detailDto.temper === profileStore.detail.temper
-          "
-        >
-          <template #tagIcon
-            ><Temper :width="24" :height="24"></Temper
-          ></template>
-        </DetailTag>
       </div>
     </div>
   </div>
@@ -245,7 +235,6 @@ import Religion from '../icons/Religion.vue'
 import SmokingSituation from '../icons/SmokingSituation.vue'
 import AlcoholConsumption from '../icons/AlcoholConsumption.vue'
 import Fitness from '../icons/Fitness.vue'
-import Temper from '../icons/Temper.vue'
 import Balance from '../icons/Balance.vue'
 import SectionLabel from '../design/SectionLabel.vue'
 

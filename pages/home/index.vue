@@ -1,6 +1,7 @@
 <template>
   <div class="w-full h-full px-5 flex flex-col gap-5 pt-20">
     <ProfileStatus></ProfileStatus>
+    <SubscriptionStatus></SubscriptionStatus>
   </div>
 </template>
 <script setup lang="ts">
@@ -16,6 +17,7 @@ import { useStateService } from '~/composables/useStateService'
 import { useStateStore } from '~/stores/stateStore'
 import { usePhotosStore } from '~/stores/photosStore'
 import { computed } from 'vue'
+import SubscriptionStatus from '~/components/home/SubscriptionStatus.vue'
 
 definePageMeta({
   layout: 'default',

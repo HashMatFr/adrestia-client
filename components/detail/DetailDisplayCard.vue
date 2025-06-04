@@ -106,14 +106,6 @@
       ></template>
     </ProfileItem>
 
-    <ProfileItem
-      :label="t('detail.description.temper')"
-      :content="temper"
-      :is-content-tag="true"
-    >
-      <template #itemIcon><Temper :width="28" :height="28"></Temper></template>
-    </ProfileItem>
-
     <div
       class="flex flex-row fixed left-0 w-full p-2 gap-2 bg-coal-800 bottom-20"
     >
@@ -152,7 +144,6 @@ import Religion from '../icons/Religion.vue'
 import SmokingSituation from '../icons/SmokingSituation.vue'
 import AlcoholConsumption from '../icons/AlcoholConsumption.vue'
 import Fitness from '../icons/Fitness.vue'
-import Temper from '../icons/Temper.vue'
 import Modify from '../icons/Modify.vue'
 import ProfileItem from '../design/ProfileItem.vue'
 import Balance from '../icons/Balance.vue'
@@ -170,9 +161,6 @@ const age = computed(() => {
 })
 const size = computed(() => {
   return profileStore.detail.size.toString()
-})
-const temper = computed(() => {
-  return t(detailEnumsTranslationPath + 'temper.' + profileStore.detail.temper)
 })
 const relationshipGoal = computed(() => {
   return t(

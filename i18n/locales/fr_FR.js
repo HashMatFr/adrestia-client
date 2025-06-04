@@ -44,6 +44,12 @@ export default {
     pageTitle: 'Découvrir',
     noResults1: 'Aucun profil dans les alentours pour le moment ...',
     noResults2: 'Et si on élargissait les critères de recherche ?',
+    initialMessage: {
+      modalTitle: 'Envoyer un premier message ?',
+      modalExplanation:
+        'Afin de te démarquer, tu peux accompagner ton Like d’un message. Qu’est-ce qui t’a attiré dans ce profil ?',
+      fieldLabel: 'Message',
+    },
   },
   profileToBrowse: {
     age: '{age} ans',
@@ -93,7 +99,6 @@ export default {
       orientation: 'Mon orientation',
       age: 'Mon âge',
       size: 'Ma taille (cm)',
-      temper: 'Ma personnalité',
       relationshipGoal: 'Le type de relation recherché',
       childrenSituation: 'Ma situation actuelle concernant les enfants',
       alcoholConsumption: 'Ma consommation d’alcool',
@@ -178,12 +183,6 @@ export default {
         SOMETIMES: 'Occasionnellement',
         REGULARLY: 'Régulièrement',
       },
-      temper: {
-        NOT_AVAILABLE: 'Je préfère garder cela privé',
-        INTROVERT: 'Introverti',
-        EXTROVERT: 'Extraverti',
-        MIDDLE: 'Un peu des deux',
-      },
     },
   },
   matcher: {
@@ -193,11 +192,8 @@ export default {
       age: 'Son âge',
       orientation: 'Son orientation',
       ageInterval: 'Entre {minAge} et {maxAge} ans',
-      size: 'Sa taille',
-      sizeInterval: 'Entre {minSize} et {maxSize} cm',
       distance: 'Se situe à moins de',
       distanceValue: '{maxDistance} km',
-      temper: 'Décrivant sa personnalité comme étant ',
       relationshipGoal: 'Recherchant ce type de relation ',
       childrenSituation: 'Sa situation actuelle concernant les enfants',
       alcoholConsumption: 'Sa consommation d’alcool',
@@ -281,12 +277,6 @@ export default {
         NEVER: 'Jamais',
         SOMETIMES: 'Occasionnellement',
         REGULARLY: 'Régulièrement',
-      },
-      temper: {
-        NOT_AVAILABLE: 'Non renseigné',
-        INTROVERT: 'Introverti',
-        EXTROVERT: 'Extraverti',
-        MIDDLE: 'Un peu des deux',
       },
     },
   },
@@ -407,12 +397,17 @@ export default {
       'L’envoi du mail contenant le code de validation a échoué.',
   },
   subscription: {
+    pageTitle: 'Ton abonnement',
+    statusLabel: 'Statut de ton abonnement',
     expiredSubscription:
-      'Ton abonnement est expiré depuis {date}. Souhaiterais-tu le renouveler ?',
+      'Ton abonnement est expiré depuis {date}.<br>Souhaiterais-tu le renouveler ?',
     subscribedUntil:
-      'Ton abonnement se termine le {date}. Souhaiterais-tu le prolonger ?',
+      'Ton abonnement se termine le {date}.<br>Souhaiterais-tu le prolonger ?',
     notSubscribed:
-      'Ton compte ne dispose d’aucun abonnement actif. Souhaiterais-tu utiliser pleinement l’appli ?',
+      'Aucun abonnement actif.<br>Souhaiterais-tu utiliser pleinement l’application ?',
+    description: 'Un abonnement te permettra de :',
+    description2: 'Débloquer et accéder à chacun de tes likes reçus',
+    description3: 'Désactiver les publicités sur l’application',
   },
   actions: {
     terminate: 'Terminer',

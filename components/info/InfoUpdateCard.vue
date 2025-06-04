@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="submitForm" class="w-full">
       <div class="flex flex-col gap-5 text-primary pb-40">
         <div class="flex flex-col gap-2">
           <Text :value="t('profile.infos.username')" class="text-secondary" />

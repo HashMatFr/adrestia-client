@@ -14,7 +14,6 @@ export type Detail = {
   detailId: string
   age: number
   size: number
-  temper: string
   relationshipGoal: string
   childrenSituation: string
   alcoholConsumption: string
@@ -43,9 +42,6 @@ export type Matcher = {
   matcherId: string
   minAge: number
   maxAge: number
-  minSize: number
-  maxSize: number
-  temper: string
   orientation: string
   relationshipGoal: string
   childrenSituation: string
@@ -133,6 +129,7 @@ export type Like = {
   giverProfileToBrowseDto: ProfileToBrowse
   receiverProfileId: string
   value: boolean
+  initialMessage: string
   createdAt: string
 }
 

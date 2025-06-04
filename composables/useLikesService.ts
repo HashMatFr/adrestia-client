@@ -20,11 +20,16 @@ export const useLikesService = () => {
     }
   }
 
-  const likeProfile = async (likedProfileId: string, value: boolean) => {
+  const likeProfile = async (
+    likedProfileId: string,
+    value: boolean,
+    initialMessage: string,
+  ) => {
     const url = 'likes/like-profile'
     const response: boolean = await $adrestia(url, {
       method: 'POST',
       params: { likedProfileId, value },
+      body: { initialMessage },
     })
     return response
   }

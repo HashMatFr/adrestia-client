@@ -1,10 +1,11 @@
 <template>
   <div class="w-full flex flex-col text-center">
-    <SectionLabel :label="t('home.profileStatus.label')"></SectionLabel>
+    <SectionLabel :label="t('subscription.statusLabel')"></SectionLabel>
     <div
       class="w-full p-2 flex flex-row gap-3 items-center bg-coal-900 rounded"
     >
-      <Text class="pr-3" :value="getSubscriptionLabel"></Text>
+      <EuroCoin :width="34" :height="34" class="text-main-500"></EuroCoin>
+      <HtmlText :value="getSubscriptionLabel"></HtmlText>
       <CustomButton
         class="h-min"
         :label="''"
@@ -23,9 +24,10 @@
 import { useStateStore } from '~/stores/stateStore'
 import CustomButton from '../design/CustomButton.vue'
 import SectionLabel from '../design/SectionLabel.vue'
-import Text from '../design/Text.vue'
 import { computed } from 'vue'
 import dayjs from 'dayjs'
+import EuroCoin from '../icons/EuroCoin.vue'
+import HtmlText from '../design/HtmlText.vue'
 
 const { t } = useI18n()
 const stateStore = useStateStore()

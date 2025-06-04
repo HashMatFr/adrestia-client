@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col text-center">
     <SectionLabel :label="t('home.profileStatus.label')"></SectionLabel>
-    <div class="w-full p-2 flex flex-col gap-3 bg-coal-900 rounded">
+    <div class="w-full p-2 flex flex-col gap-5 bg-coal-900 rounded">
       <ProgressCircle
         :steps="statusSteps"
         :currentIndex="currentIndex"
@@ -9,12 +9,10 @@
 
       <div
         v-if="!stateStore.activationState"
-        class="flex flex-row justify-between w-full items-center"
+        class="flex flex-row gap-3 w-full items-center"
       >
-        <Text
-          class="pr-3"
-          :value="t('home.profileStatus.activationWarning')"
-        ></Text>
+        <Pause :width="34" :height="34" class="text-main-500"></Pause>
+        <Text :value="t('home.profileStatus.activationWarning')"></Text>
         <CustomButton
           class="h-min"
           :label="''"
@@ -40,6 +38,7 @@ import ArrowLeft from '../icons/ArrowLeft.vue'
 import SectionLabel from '../design/SectionLabel.vue'
 import ProgressCircle from './ProgressCircle.vue'
 import { ProgressStep } from '~/constants/types'
+import Pause from '../icons/Pause.vue'
 
 const { t } = useI18n()
 const stateStore = useStateStore()

@@ -28,14 +28,6 @@
       <template #itemIcon><Age :width="28" :height="28"></Age></template>
     </ProfileItem>
 
-    <!-- SIZE -->
-    <ProfileItem
-      :label="t('matcher.description.size')"
-      :content="t('matcher.description.sizeInterval', { minSize, maxSize })"
-    >
-      <template #itemIcon><Size :width="28" :height="28"></Size></template>
-    </ProfileItem>
-
     <!-- DISTANCE -->
     <ProfileItem
       :label="t('matcher.description.distance')"
@@ -134,15 +126,6 @@
       ></template>
     </ProfileItem>
 
-    <!-- TEMPER -->
-    <ProfileItem
-      :label="t('matcher.description.temper')"
-      :content="temperOptions"
-      :isContentTag="true"
-    >
-      <template #itemIcon><Temper :width="28" :height="28"></Temper></template>
-    </ProfileItem>
-
     <div class="fixed bottom-20 left-0 w-full p-2 flex bg-coal-800">
       <CustomButton
         :label="t('actions.modify')"
@@ -160,7 +143,6 @@ import { useProfileStore } from '~/stores/profileStore'
 import { computed } from 'vue'
 import CustomButton from '../design/CustomButton.vue'
 import Age from '../icons/Age.vue'
-import Size from '../icons/Size.vue'
 import RelationshipGoal from '../icons/RelationshipGoal.vue'
 import ChildrenSituation from '../icons/ChildrenSituation.vue'
 import Ethnicity from '../icons/Ethnicity.vue'
@@ -168,7 +150,6 @@ import Religion from '../icons/Religion.vue'
 import SmokingSituation from '../icons/SmokingSituation.vue'
 import AlcoholConsumption from '../icons/AlcoholConsumption.vue'
 import Fitness from '../icons/Fitness.vue'
-import Temper from '../icons/Temper.vue'
 import Sex from '../icons/Sex.vue'
 import Modify from '../icons/Modify.vue'
 import ProfileItem from '../design/ProfileItem.vue'
@@ -187,19 +168,8 @@ const minAge = computed(() => {
 const maxAge = computed(() => {
   return profileStore.matcher.maxAge
 })
-const minSize = computed(() => {
-  return profileStore.matcher.minSize
-})
-const maxSize = computed(() => {
-  return profileStore.matcher.maxSize
-})
 const distance = computed(() => {
   return profileStore.matcher.distance
-})
-const temperOptions = computed(() => {
-  return profileStore.matcher.temper
-    .split(',')
-    .map((x) => t('matcher.enums.temper.' + x))
 })
 const relationshipGoalOptions = computed(() => {
   return profileStore.matcher.relationshipGoal

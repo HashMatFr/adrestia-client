@@ -29,10 +29,59 @@
           :category="'success'"
           :label="t('actions.like')"
           class="w-full"
-          @click="likeCurrentProfile"
+          @click="openInitialMessageModal"
           ><template #iconStart> <Heart class="mr-2" /> </template
         ></CustomButton>
       </div>
+
+      <!-- Like with initial message modal -->
+      <Modal
+        v-if="shouldDisplayInitialMessageModal"
+        @on-modal-close="closeInitialMessageModal"
+      >
+        <template #modalHeader>
+          <Text :value="t('explore.initialMessage.modalTitle')"></Text>
+        </template>
+        <template #modalContent>
+          <div class="w-full flex flex-col gap-3 bg-coal-800 p-5 rounded-b">
+            <Text :value="t('explore.initialMessage.modalExplanation')"></Text>
+            <form
+              novalidate
+              @submit.prevent="submitInitialMessageForm"
+              class="flex flex-col gap-3 w-full"
+            >
+              <InputValidationWrapper
+                id="initialMessage"
+                ref="initialMessageRef"
+                type="text"
+                name="initialMessage"
+                :label="t('explore.initialMessage.fieldLabel')"
+                :value="initialMessage"
+                :rules="'max:255'"
+                class="w-full"
+                :on-change="handleChangeField"
+                @is-field-valid="(event) => (form.initialMessage = event)"
+              />
+              <CustomButton
+                :base="true"
+                :outline="false"
+                :category="'success'"
+                :label="t('actions.like')"
+                class="w-full"
+                type="submit"
+                ><template #iconStart> <Heart class="mr-2" /> </template
+              ></CustomButton>
+              <CustomButton
+                class="w-full"
+                :label="t('actions.cancel')"
+                :category="'alert'"
+                :base="true"
+                :outline="false"
+                @click="closeInitialMessageModal"
+              ></CustomButton>
+            </form>
+          </div> </template
+      ></Modal>
 
       <!-- New Match modal -->
       <Modal
@@ -50,7 +99,7 @@
               :label="t('actions.goToNewMatch')"
               :base="true"
               :outline="false"
-              :category="'alert'"
+              :category="'success'"
               @click="goToNewMatch"
               ><template #iconStart> <GarbageCan class="mr-2" /> </template
             ></CustomButton>
@@ -97,6 +146,7 @@ import Cross from '~/components/icons/Cross.vue'
 import Heart from '~/components/icons/Heart.vue'
 import Modify from '~/components/icons/Modify.vue'
 import NoResults from '~/components/icons/NoResults.vue'
+import InputValidationWrapper from '~/components/validation/InputValidationWrapper.vue'
 import { useLikesService } from '~/composables/useLikesService'
 import { useProfileService } from '~/composables/useProfileService'
 import { useLayoutStore } from '~/stores/layoutStore'
@@ -156,16 +206,50 @@ function rewindToPreviousProfile() {
 
 function dislikeCurrentProfile() {
   likesService
-    .likeProfile(profileToBrowse.value.profileId, false)
+    .likeProfile(profileToBrowse.value.profileId, false, null)
     .then((result) => {
       profilesToBrowseStore.pushRewindAvailability(true)
       goToNextProfile()
     })
 }
 
+const shouldDisplayInitialMessageModal = ref(false)
+
+function openInitialMessageModal() {
+  shouldDisplayInitialMessageModal.value = true
+}
+
+// Initial Message Form setting
+const initialMessage = ref('')
+const form = ref({
+  initialMessage: false,
+})
+const initialMessageRef = ref(null)
+
+function handleChangeField(name, value) {
+  if (name === 'initialMessage') {
+    initialMessage.value = value
+  }
+}
+
+async function submitInitialMessageForm() {
+  initialMessageRef.value.validate()
+  const isValid = form.value.initialMessage
+
+  if (isValid) {
+    likeCurrentProfile()
+  }
+}
+
+function closeInitialMessageModal() {
+  shouldDisplayInitialMessageModal.value = false
+  initialMessage.value = ''
+  form.value.initialMessage = false
+}
+
 function likeCurrentProfile() {
   likesService
-    .likeProfile(profileToBrowse.value.profileId, true)
+    .likeProfile(profileToBrowse.value.profileId, true, initialMessage.value)
     .then((result) => {
       if (result) {
         // Propose to see the new match

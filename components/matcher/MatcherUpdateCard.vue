@@ -49,34 +49,6 @@
         </div>
       </div>
 
-      <!-- SIZE -->
-      <div class="flex flex-row gap-5 items-center w-full">
-        <Size :width="28" :height="28"></Size>
-        <div class="flex flex-col gap-2 pl-5 border-l border-primary w-full">
-          <HtmlText :value="t('matcher.description.size')" />
-          <div class="flex flex-row gap-10 w-full">
-            <Incrementor
-              :name="'minSize'"
-              :min-value="100"
-              :max-value="250"
-              :start-value="matcherStore.newMatcher.minSize"
-              :condition-value="matcherStore.newMatcher.maxSize"
-              :condition="'<'"
-              @on-update="handleChangeIncrementorField"
-            ></Incrementor>
-            <Incrementor
-              :name="'maxSize'"
-              :min-value="100"
-              :max-value="250"
-              :start-value="matcherStore.newMatcher.maxSize"
-              :condition-value="matcherStore.newMatcher.minSize"
-              :condition="'>'"
-              @on-update="handleChangeIncrementorField"
-            ></Incrementor>
-          </div>
-        </div>
-      </div>
-
       <!-- DISTANCE -->
       <div class="flex flex-row gap-5 items-center w-full">
         <Pin :width="28" :height="28"></Pin>
@@ -186,17 +158,6 @@
         ></template>
       </MatcherUpdateItem>
 
-      <!-- TEMPER -->
-      <MatcherUpdateItem
-        :label="t('matcher.description.temper')"
-        :options="temperOptions"
-        :enum-name="'temper'"
-      >
-        <template #itemIcon
-          ><Temper :width="28" :height="28"></Temper
-        ></template>
-      </MatcherUpdateItem>
-
       <!-- ACTIONS -->
       <div
         class="flex flex-row fixed bottom-20 left-0 w-full p-2 gap-2 bg-coal-800"
@@ -227,7 +188,6 @@ import { useProfileStore } from '~/stores/profileStore'
 import CustomButton from '../design/CustomButton.vue'
 import Sex from '../icons/Sex.vue'
 import Age from '../icons/Age.vue'
-import Size from '../icons/Size.vue'
 import RelationshipGoal from '../icons/RelationshipGoal.vue'
 import ChildrenSituation from '../icons/ChildrenSituation.vue'
 import Ethnicity from '../icons/Ethnicity.vue'
@@ -235,7 +195,6 @@ import Religion from '../icons/Religion.vue'
 import SmokingSituation from '../icons/SmokingSituation.vue'
 import AlcoholConsumption from '../icons/AlcoholConsumption.vue'
 import Fitness from '../icons/Fitness.vue'
-import Temper from '../icons/Temper.vue'
 import Incrementor from '../design/Incrementor.vue'
 import { useProfileService } from '~/composables/useProfileService'
 import { useMatcherStore } from '~/stores/matcherStore'
@@ -254,8 +213,6 @@ const profileService = useProfileService()
 
 matcherStore.newMatcher.minAge = profileStore.matcher.minAge
 matcherStore.newMatcher.maxAge = profileStore.matcher.maxAge
-matcherStore.newMatcher.minSize = profileStore.matcher.minSize
-matcherStore.newMatcher.maxSize = profileStore.matcher.maxSize
 matcherStore.newMatcher.distance = profileStore.matcher.distance
 
 matcherStore.newMatcher.matcherId = profileStore.matcher.matcherId
@@ -276,7 +233,6 @@ matcherStore.newMatcher.smokingSituation =
 matcherStore.newMatcher.alcoholConsumption =
   profileStore.matcher.alcoholConsumption.split(',')
 matcherStore.newMatcher.fitness = profileStore.matcher.fitness.split(',')
-matcherStore.newMatcher.temper = profileStore.matcher.temper.split(',')
 
 const sexInterestedInOptions: SelectOption[] = [
   {
@@ -395,15 +351,6 @@ const smokingSituationOptions: SelectOption[] = [
   { value: 'SOMETIMES', text: t('matcher.enums.smokingSituation.SOMETIMES') },
   { value: 'REGULARLY', text: t('matcher.enums.smokingSituation.REGULARLY') },
 ]
-const temperOptions: SelectOption[] = [
-  {
-    value: 'NOT_AVAILABLE',
-    text: t('matcher.enums.temper.NOT_AVAILABLE'),
-  },
-  { value: 'INTROVERT', text: t('matcher.enums.temper.INTROVERT') },
-  { value: 'EXTROVERT', text: t('matcher.enums.temper.EXTROVERT') },
-  { value: 'MIDDLE', text: t('matcher.enums.temper.MIDDLE') },
-]
 
 function onCancel() {
   emit('on-cancel')
@@ -416,12 +363,6 @@ function handleChangeIncrementorField(values) {
       break
     case 'maxAge':
       matcherStore.newMatcher.maxAge = values.value
-      break
-    case 'minSize':
-      matcherStore.newMatcher.minSize = values.value
-      break
-    case 'maxSize':
-      matcherStore.newMatcher.maxSize = values.value
       break
     case 'distance':
       matcherStore.newMatcher.distance = values.value
@@ -436,8 +377,6 @@ function updateMatcher() {
     matcherId: profileStore.matcher.matcherId,
     minAge: matcherStore.newMatcher.minAge,
     maxAge: matcherStore.newMatcher.maxAge,
-    minSize: matcherStore.newMatcher.minSize,
-    maxSize: matcherStore.newMatcher.maxSize,
     distance: matcherStore.newMatcher.distance,
     sexInterestedIn: matcherStore.newMatcher.sexInterestedIn.toString(),
     orientation: matcherStore.newMatcher.orientation.toString(),
@@ -449,7 +388,6 @@ function updateMatcher() {
     smokingSituation: matcherStore.newMatcher.smokingSituation.toString(),
     alcoholConsumption: matcherStore.newMatcher.alcoholConsumption.toString(),
     fitness: matcherStore.newMatcher.fitness.toString(),
-    temper: matcherStore.newMatcher.temper.toString(),
   }
   profileService.updateMatcher(matcherDto)
   emit('on-update', false)

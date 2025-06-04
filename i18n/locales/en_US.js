@@ -43,6 +43,12 @@ export default {
     pageTitle: 'Discover',
     noResults1: 'No profile found around you right now ...',
     noResults2: 'What if we change your matching criteria ?',
+    initialMessage: {
+      modalTitle: 'Send a first message ?',
+      modalExplanation:
+        'To stand out, you can write along your Like a message. What did you like about this profile ?',
+      fieldLabel: 'Message',
+    },
   },
   profileToBrowse: {
     age: '{age} years old',
@@ -92,7 +98,6 @@ export default {
       orientation: 'My sexual orientation',
       age: 'My age',
       size: 'My height',
-      temper: 'My personality',
       relationshipGoal: 'The type of relationship I am looking for',
       childrenSituation: 'My situation concerning children',
       alcoholConsumption: 'My alcohol consumption habits',
@@ -176,12 +181,6 @@ export default {
         SOMETIMES: 'Occasionally',
         REGULARLY: 'Regularly',
       },
-      temper: {
-        NOT_AVAILABLE: 'I prefer to keep that for myself',
-        INTROVERT: 'Introvert',
-        EXTROVERT: 'Extrovert',
-        MIDDLE: 'A bit of both',
-      },
     },
   },
   matcher: {
@@ -190,11 +189,8 @@ export default {
     description: {
       age: 'His age',
       ageInterval: 'Between {minAge} and {maxAge} years old',
-      size: 'His size',
-      sizeInterval: 'Between {minSize} and {maxSize}</span> cm',
       distance: 'Should be closer than',
       distanceValue: '{maxDistance} km',
-      temper: 'Describing his or her personality as',
       relationshipGoal: 'Is looking for',
       childrenSituation: 'His/her situation concerning children',
       alcoholConsumption: 'His/her alcohol consumption',
@@ -278,12 +274,6 @@ export default {
         NEVER: 'Never',
         SOMETIMES: 'Occasionally',
         REGULARLY: 'Regularly',
-      },
-      temper: {
-        NOT_AVAILABLE: 'Not shared',
-        INTROVERT: 'Introvert',
-        EXTROVERT: 'Extrovert',
-        MIDDLE: 'A bit of both',
       },
     },
   },
@@ -399,12 +389,17 @@ export default {
       'The sending of the e-mail containing the validation code failed.',
   },
   subscription: {
+    pageTitle: 'Your subscription plan',
+    statusLabel: 'Subscription’s status',
     expiredSubscription:
-      'Your subscription expired since {date}. Would you like to renew it ?',
+      'Your subscription expired since {date}.<br>Would you like to renew it ?',
     subscribedUntil:
-      'Your subscription end {date}. Would you like to extend it ?',
+      'Your subscription end {date}.<br>Would you like to extend it ?',
     notSubscribed:
-      'Your account does not have any active subscription. Would you like to fully use the app ?',
+      'No active subscription.<br>Would you like to fully use the app ?',
+    description: 'By subscribing you will be able to:',
+    description2: 'Unlock and see your received likes',
+    description3: 'Disable the ads on the app',
   },
   actions: {
     terminate: 'Terminate',

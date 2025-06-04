@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="submitForm" class="w-full">
       <div class="flex flex-col gap-5 text-primary pb-40">
         <div class="flex flex-col gap-2">
           <HtmlText
@@ -180,21 +180,6 @@
             @is-field-valid="(event) => (form.fitness = event)"
           />
         </div>
-        <div class="flex flex-col gap-2">
-          <Text
-            :value="t('detail.description.temper')"
-            class="text-secondary"
-          />
-          <SelectValidationWrapper
-            id="temperSelect"
-            name="temper"
-            ref="temperRef"
-            :options="temperOptions"
-            :preselected-value="temper"
-            :on-change="handleChangeField"
-            @is-field-valid="(event) => (form.temper = event)"
-          />
-        </div>
         <div
           class="flex flex-row fixed left-0 w-full p-2 gap-2 bg-coal-800 bottom-20"
         >
@@ -270,10 +255,6 @@ const props = defineProps({
     required: true,
   },
   fitness: {
-    type: String,
-    required: true,
-  },
-  temper: {
     type: String,
     required: true,
   },
@@ -400,15 +381,6 @@ const smokingSituationOptions: SelectOption[] = [
   { value: 'SOMETIMES', text: t('detail.enums.smokingSituation.SOMETIMES') },
   { value: 'REGULARLY', text: t('detail.enums.smokingSituation.REGULARLY') },
 ]
-const temperOptions: SelectOption[] = [
-  {
-    value: 'NOT_AVAILABLE',
-    text: t('detail.enums.temper.NOT_AVAILABLE'),
-  },
-  { value: 'INTROVERT', text: t('detail.enums.temper.INTROVERT') },
-  { value: 'EXTROVERT', text: t('detail.enums.temper.EXTROVERT') },
-  { value: 'MIDDLE', text: t('detail.enums.temper.MIDDLE') },
-]
 
 // Form setting
 const form = ref({
@@ -422,7 +394,6 @@ const form = ref({
   smokingSituation: false,
   alcoholConsumption: false,
   fitness: false,
-  temper: false,
 })
 const sexRef = ref(null)
 const orientationRef = ref(null)
@@ -434,7 +405,6 @@ const religionRef = ref(null)
 const smokingSituationRef = ref(null)
 const alcoholConsumptionRef = ref(null)
 const fitnessRef = ref(null)
-const temperRef = ref(null)
 
 function submitForm() {
   sexRef.value.validate()
@@ -447,7 +417,6 @@ function submitForm() {
   smokingSituationRef.value.validate()
   alcoholConsumptionRef.value.validate()
   fitnessRef.value.validate()
-  temperRef.value.validate()
 
   let isValid =
     form.value.sex &&
@@ -459,8 +428,7 @@ function submitForm() {
     form.value.religion &&
     form.value.smokingSituation &&
     form.value.alcoholConsumption &&
-    form.value.fitness &&
-    form.value.temper
+    form.value.fitness
 
   if (isValid) {
     emit('on-update')

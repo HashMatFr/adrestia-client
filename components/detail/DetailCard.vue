@@ -20,7 +20,6 @@
       :smoking-situation="smokingSituation"
       :alcohol-consumption="alcoholConsumption"
       :fitness="fitness"
-      :temper="temper"
       @on-update="updateDetail"
       @on-cancel="setIsUpdateMode(false)"
       @update-field="updateField"
@@ -81,9 +80,6 @@ alcoholConsumption.value = profileStore.detail.alcoholConsumption
 const fitness = ref('NOT_AVAILABLE')
 fitness.value = profileStore.detail.fitness
 
-const temper = ref('NOT_AVAILABLE')
-temper.value = profileStore.detail.temper
-
 function updateField(values) {
   switch (values.name) {
     case 'sex':
@@ -122,9 +118,6 @@ function updateField(values) {
     case 'fitness':
       fitness.value = values.value
       break
-    case 'temper':
-      temper.value = values.value
-      break
     default:
       break
   }
@@ -145,7 +138,6 @@ function updateDetail() {
     smokingSituation: smokingSituation.value,
     alcoholConsumption: alcoholConsumption.value,
     fitness: fitness.value,
-    temper: temper.value,
   }
   profileService.updateDetail(newDetail)
   setIsUpdateMode(false)
