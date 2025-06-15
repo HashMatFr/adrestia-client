@@ -56,6 +56,9 @@ definePageMeta({
 const { t } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('resetPassword.pageTitle')
+layoutStore.shouldDisplayHomeButton = false
+layoutStore.shouldDisplaySettingsButton = false
+layoutStore.shouldDisplayLanguagesSwitcher = true
 const localePath = useLocalePath()
 const resetPasswordService = useResetPasswordsService()
 

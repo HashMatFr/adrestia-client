@@ -13,7 +13,14 @@
         name="username"
         :label="t('register.username')"
         :value="username"
-        :rules="'required|firstCharacterMustBeALetter|min:4|max:50|doesNotContainSpaces'"
+        :rules="[
+          { name: 'required' },
+          { name: 'unicodeLettersOrDigits' },
+          { name: 'firstCharacterMustBeALetter' },
+          { name: 'min', param: 3 },
+          { name: 'max', param: 50 },
+          { name: 'doesNotContainSpaces' },
+        ]"
         class="w-full lg:w-5/12"
         :on-change="handleChangeField"
         @is-field-valid="(event) => (form.username = event)"
@@ -28,7 +35,11 @@
           placeholder="Ex : bob@adrestia.com"
           :value="email"
           class="w-full"
-          :rules="'required|email|max:254'"
+          :rules="[
+            { name: 'required' },
+            { name: 'email' },
+            { name: 'max', param: 100 },
+          ]"
           :on-change="handleChangeField"
           @is-field-valid="(event) => (form.email = event)"
         />

@@ -1,3 +1,14 @@
+export type ValidationRule = {
+  name: string
+  param?: string | number
+}
+
+export type Property = {
+  key: string
+  value: string
+  type: string
+}
+
 export type RegisterProfile = {
   username: string
   email: string
@@ -92,10 +103,7 @@ export type Message = {
 
 export type Match = {
   matchId: string
-  firstProfileId: string
-  secondProfileId: string
-  firstProfileUsername: string
-  secondProfileUsername: string
+  interlocutorProfile: ProfileToBrowse
   createdAt: string
   messages: Message[]
 }

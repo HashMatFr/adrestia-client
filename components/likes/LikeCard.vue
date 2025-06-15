@@ -7,13 +7,19 @@
     @click="displayLikingProfile"
   >
     <div class="flex flex-row gap-5 items-center">
-      <div ref="avatarRef" class="w-16 h-16 flex">
+      <div
+        v-if="canBeDisplayed && avatarData"
+        ref="avatarRef"
+        class="w-16 h-16 flex"
+      >
         <img
-          v-if="avatarData"
           :src="avatarData"
           :alt="'Avatar'"
-          :class="['object-cover rounded-full', { 'blur-sm': !canBeDisplayed }]"
+          class="object-cover rounded-full"
         />
+      </div>
+      <div v-else class="w-16 h-16 flex bg-coal-900">
+        <Lock class="m-auto text-main-500"></Lock>
       </div>
       <Text :value="profileToBrowse.username" class="p-2"></Text>
     </div>
@@ -36,6 +42,7 @@ import { useLikesStore } from '~/stores/likesStore'
 import Chevron from '../icons/Chevron.vue'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import Lock from '../icons/Lock.vue'
 
 dayjs.extend(relativeTime)
 
@@ -75,7 +82,7 @@ onUnmounted(() => {
 function verifyAvatar() {
   if (
     checkIfAvatarVisibility &&
-    !likesStore.hasAvatarBeenDownlowded(props.profileToBrowse.profileId)
+    !likesStore.getAvatarDataByProfileId(props.profileToBrowse.profileId)
   ) {
     fetchAvatarData()
   }

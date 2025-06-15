@@ -13,7 +13,11 @@
           name="email"
           type="email"
           :on-change="handleChangeField"
-          :rules="'required|email:' + email"
+          :rules="[
+            { name: 'required' },
+            { name: 'email' },
+            { name: 'max', param: 100 },
+          ]"
           :value="email"
           @is-field-valid="(event) => (form.email = event)"
         />

@@ -129,6 +129,9 @@ definePageMeta({
 const { t } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('likes.pageTitle')
+layoutStore.shouldDisplayHomeButton = true
+layoutStore.shouldDisplaySettingsButton = true
+layoutStore.shouldDisplayLanguagesSwitcher = false
 
 const areLikesLoading = ref(true)
 const likesService = useLikesService()

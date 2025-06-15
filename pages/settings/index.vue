@@ -83,6 +83,9 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('settings.pageTitle')
+layoutStore.shouldDisplayHomeButton = true
+layoutStore.shouldDisplaySettingsButton = false
+layoutStore.shouldDisplayLanguagesSwitcher = true
 const shouldDisplayLogoutModal = ref(false)
 
 function openLogoutModal() {

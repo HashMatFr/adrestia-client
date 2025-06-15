@@ -377,7 +377,7 @@ export default {
   validateEmail: {
     pageTitle: 'Confirm my e-mail address',
     explanation:
-      'To confirm your e-mail address, enter the 6 digits code you received by e-mail when you created your account:',
+      'To confirm your e-mail address, enter the 6 characters code you received by e-mail when you created your account:',
     code: 'Validation code',
     notReceived:
       'Did you not received the mail with the validation code (even in the spam folder) ?',
@@ -400,6 +400,11 @@ export default {
     description: 'By subscribing you will be able to:',
     description2: 'Unlock and see your received likes',
     description3: 'Disable the ads on the app',
+  },
+  matches: {
+    pageTitle: 'My focused matches',
+    warning:
+      'A Match is not to be taken lightly here. To guarantee the best possible experience, only your first {count} matches are visible. Discover more about them, or delete them if there is unfortunately no mutual interest.',
   },
   actions: {
     terminate: 'Terminate',
@@ -429,11 +434,9 @@ export default {
     usernameContainsWhitespaces: 'The username must not contain any spaces.',
     usernameFirstCharacterMustBeALetter: 'The first character must be a letter',
     mandatoryField: 'This field is mandatory',
+    invalidCharacter: 'This field contains an invalid character',
     mustNotContainANumber: 'This field must not contain a number',
     superiorThan: 'This field must be  at least {limit} characters.',
-    minDigits: 'This field must contain at least {limit} digits.',
-    maxDigits: 'This field must contain at max {limit} digits.',
-    equalDigits: 'This field must contain {limit} digits.',
     maxLength: 'This field must contain at max {limit} characters.',
     expectedDateFormat: 'The expected format is DD/MM/YYYY',
     invalidFileSize: 'The selected photo’s size is greater than {limit} Mo',

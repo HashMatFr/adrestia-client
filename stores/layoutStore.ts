@@ -1,6 +1,9 @@
 export const useLayoutStore = defineStore('layout', {
   state: () => ({
     isLoading: false,
+    shouldDisplayHomeButton: false,
+    shouldDisplaySettingsButton: false,
+    shouldDisplayLanguagesSwitcher: false,
     error: null,
     openedSelectFieldId: '',
     pageTitle: '',

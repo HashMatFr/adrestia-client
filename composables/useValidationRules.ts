@@ -25,6 +25,36 @@ export const useValidationRules = () => {
     return true
   }
 
+  const latinAlphabetOrDigits = (value: string) => {
+    const possibleChars =
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    let count = 0
+    for (const char of value) {
+      if (possibleChars.includes(char)) {
+        count++
+      }
+    }
+    if (count !== value.length) {
+      return t('errors.invalidCharacter')
+    }
+    return true
+  }
+
+  const unicodeLettersOrDigits = (value: string) => {
+    const unicodeLetterRegex = /\p{L}/u
+    const unicodeDigitRegex = /\p{N}/u
+    let count = 0
+    for (const char of value) {
+      if (unicodeLetterRegex.test(char) || unicodeDigitRegex.test(char)) {
+        count++
+      }
+    }
+    if (count !== value.length) {
+      return t('errors.invalidCharacter')
+    }
+    return true
+  }
+
   const alpha = (value) => {
     const hasAtLeastOneNumberRegex = /.*[0-9].*/
     if (hasAtLeastOneNumberRegex.test(value)) {
@@ -62,27 +92,6 @@ export const useValidationRules = () => {
   const emailShouldNotBeTheSameAsOld = (value, target) => {
     if (value === target) {
       return t('errors.email.sameAsOld')
-    }
-    return true
-  }
-
-  const minDigits = (value: number, limit: number) => {
-    if (!value || String(value).length < limit) {
-      return t('errors.minDigits', { limit })
-    }
-    return true
-  }
-
-  const maxDigits = (value: number, limit: number) => {
-    if (!value || String(value).length > limit) {
-      return t('errors.maxDigits', { limit })
-    }
-    return true
-  }
-
-  const equalDigits = (value: number, limit: number) => {
-    if (!value || String(value).length !== limit) {
-      return t('errors.equalDigits', { limit })
     }
     return true
   }
@@ -198,13 +207,12 @@ export const useValidationRules = () => {
 
   return {
     required,
+    unicodeLettersOrDigits,
+    latinAlphabetOrDigits,
     alpha,
     email,
     confirmedEmail,
     emailShouldNotBeTheSameAsOld,
-    minDigits,
-    maxDigits,
-    equalDigits,
     min,
     max,
     passwordLength,

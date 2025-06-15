@@ -9,7 +9,11 @@
             name="username"
             ref="usernameRef"
             :value="username"
-            :rules="'required|max:100'"
+            :rules="[
+              { name: 'required' },
+              { name: 'unicodeLettersOrDigits' },
+              { name: 'max', param: 100 },
+            ]"
             :on-change="handleChangeField"
             @is-field-valid="(event) => (form.username = event)"
           ></InputValidationWrapper>
@@ -21,7 +25,10 @@
             id="cityInput"
             name="city"
             ref="cityRef"
-            :rules="'max:100'"
+            :rules="[
+              { name: 'unicodeLettersOrDigits' },
+              { name: 'max', param: 100 },
+            ]"
             :value="city"
             :on-change="handleChangeField"
             @is-field-valid="(event) => (form.city = event)"
@@ -34,7 +41,10 @@
             id="jobInput"
             name="job"
             ref="jobRef"
-            :rules="'max:150'"
+            :rules="[
+              { name: 'unicodeLettersOrDigits' },
+              { name: 'max', param: 150 },
+            ]"
             :value="job"
             :on-change="handleChangeField"
             @is-field-valid="(event) => (form.job = event)"
@@ -61,7 +71,7 @@
             name="bio"
             ref="bioRef"
             :value="bio"
-            :rules="'max:2000'"
+            :rules="[{ name: 'max', param: 2000 }]"
             :max-length="2000"
             :on-change="handleChangeField"
             @is-field-valid="(event) => (form.bio = event)"

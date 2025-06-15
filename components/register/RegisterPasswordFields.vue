@@ -5,7 +5,7 @@
         id="password"
         ref="passwordRef"
         :label="t('register.password')"
-        :rules="rulesString"
+        :rules="passwordRules"
         name="password"
         :type="displayPassword ? 'text' : 'password'"
         :on-change="handleChangeField"
@@ -59,7 +59,11 @@
       name="passwordConfirmation"
       :value="passwordConfirmation"
       :on-change="handleChangeField"
-      :rules="'required|max:100|confirmPassword:' + password"
+      :rules="[
+        { name: 'required' },
+        { name: 'max', param: 100 },
+        { name: 'confirmPassword', param: password },
+      ]"
       @is-field-valid="(event) => (form.passwordConfirmation = event)"
     >
     </InputValidationWrapper>
@@ -70,6 +74,7 @@
 import { ref, computed } from 'vue'
 import Text from '../design/Text.vue'
 import RegisterPasswordHint from './RegisterPasswordHint.vue'
+import { ValidationRule } from '~/constants/types'
 
 const props = defineProps({
   onChange: {
@@ -97,36 +102,21 @@ const passwordLength = ref(false)
 const passwordShouldContainLowercaseLetter = ref(false)
 const passwordShouldContainUppercaseLetter = ref(false)
 const passwordShouldContainsASpecialCharacter = ref(false)
-const rules = ref([
-  'passwordLength:9',
-  'passwordShouldContainANumber',
-  'passwordShouldContainLowercaseLetter',
-  'passwordShouldContainUppercaseLetter',
-  'passwordShouldContainsASpecialCharacter',
-])
-const properties = ref([
-  'passwordLength',
-  'passwordShouldContainANumber',
-  'passwordShouldContainLowercaseLetter',
-  'passwordShouldContainUppercaseLetter',
-  'passwordShouldContainsASpecialCharacter',
-])
-const rulesString = computed(() => {
-  return (
-    'required|passwordLength:9|passwordShouldContainANumber:' +
-    password.value +
-    '|passwordShouldContainLowercaseLetter:' +
-    password.value +
-    '|passwordShouldContainUppercaseLetter:' +
-    password.value +
-    '|passwordShouldContainsASpecialCharacter:' +
-    password.value
-  )
+
+const passwordRules = computed(() => {
+  return [
+    { name: 'required' },
+    { name: 'passwordLength', param: 9 },
+    { name: 'passwordShouldContainANumber', param: password.value },
+    { name: 'passwordShouldContainLowercaseLetter', param: password.value },
+    { name: 'passwordShouldContainUppercaseLetter', param: password.value },
+    { name: 'passwordShouldContainsASpecialCharacter', param: password.value },
+  ]
 })
 
-function checkPasswordRule(rule, propertyName) {
+function checkPasswordRule(rule: ValidationRule) {
   const isValid = passwordRef.value.validateAgainstRule(rule)
-  switch (propertyName) {
+  switch (rule.name) {
     case 'passwordLength':
       passwordLength.value = isValid
       break
@@ -151,14 +141,15 @@ function handleChangeField(name, value) {
     case 'password':
       password.value = value
       props.onChange('password', value)
-      rules.value.forEach((rule, index) => {
+      passwordRules.value.forEach((rule) => {
         // Validates one rule at the time to synchro the document (displaying each password rule status)
-        checkPasswordRule(rule, properties.value[index])
+        checkPasswordRule(rule)
       })
       if (passwordConfirmation.value.length > 0) {
-        passwordConfirmationRef.value.validateAgainstRule(
-          'confirmPassword:' + password.value,
-        )
+        passwordConfirmationRef.value.validateAgainstRule({
+          name: 'confirmPassword',
+          param: password.value,
+        })
       }
       break
     case 'passwordConfirmation':

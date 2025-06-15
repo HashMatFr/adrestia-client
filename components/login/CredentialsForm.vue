@@ -10,7 +10,7 @@
           type="email"
           placeholder="Ex : bob@adrestia.com"
           :on-change="handleChangeField"
-          :rules="'required|email:' + email"
+          :rules="[{ name: 'required' }, { name: 'email', param: email }]"
           :value="email"
           @is-field-valid="(event) => (form.email = event)"
         />
@@ -22,7 +22,7 @@
           name="password"
           type="password"
           :on-change="handleChangeField"
-          :rules="'required'"
+          :rules="[{ name: 'required' }]"
           :value="password"
           @is-field-valid="(event) => (form.password = event)"
         />

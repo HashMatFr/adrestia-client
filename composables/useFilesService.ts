@@ -117,7 +117,7 @@ export const useFilesService = () => {
   const downloadAvatar = async (
     profileId: string,
     filename: string,
-    storeName: string,
+    storeName?: string,
   ) => {
     const url = 'files/download-file'
     const response: Blob = await $adrestia(url, {

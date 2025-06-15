@@ -28,7 +28,7 @@ export const useProfileService = () => {
   }
 
   const getUserProfile = async () => {
-    const url = 'profiles/get-user-profile'
+    const url = 'profiles/user-profile'
     const response: Profile = await $adrestia(url, {
       method: 'GET',
     })
@@ -163,7 +163,7 @@ export const useProfileService = () => {
     latitude: number,
     longitude: number,
   ) => {
-    const url = 'profiles/get-profiles-to-browse'
+    const url = 'profiles/profiles-to-browse'
     const response: ProfileToBrowse[] = await $adrestia(url, {
       method: 'POST',
       params: { latitude, longitude },

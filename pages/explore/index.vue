@@ -57,7 +57,10 @@
                 name="initialMessage"
                 :label="t('explore.initialMessage.fieldLabel')"
                 :value="initialMessage"
-                :rules="'max:255'"
+                :rules="[
+                  { name: 'unicodeLettersOrDigits' },
+                  { name: 'max', param: 255 },
+                ]"
                 class="w-full"
                 :on-change="handleChangeField"
                 @is-field-valid="(event) => (form.initialMessage = event)"
@@ -161,6 +164,9 @@ definePageMeta({
 const { t } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('explore.pageTitle')
+layoutStore.shouldDisplayHomeButton = true
+layoutStore.shouldDisplaySettingsButton = true
+layoutStore.shouldDisplayLanguagesSwitcher = false
 
 const profileService = useProfileService()
 const profileStore = useProfileStore()

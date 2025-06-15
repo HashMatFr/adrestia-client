@@ -37,17 +37,6 @@
         profileToBrowse.username + ', ' + String(profileToBrowse.detailDto.age)
       "
     ></SectionLabel>
-    <!-- <div class="flex flex-row justify-between w-full p-3 bg-coal-900 mb-1">
-      <Text :value="profileToBrowse.username" font-size="xl"></Text>
-      <Text
-        :value="
-          t('profileToBrowse.age', {
-            age: profileToBrowse.detailDto.age.toString(),
-          })
-        "
-        font-size="xl"
-      ></Text>
-    </div> -->
 
     <!-- Main infos -->
     <div class="flex flex-col gap-1 w-full">

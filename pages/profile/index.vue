@@ -28,6 +28,9 @@ const route = useRoute()
 
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('profile.pageTitle')
+layoutStore.shouldDisplayHomeButton = true
+layoutStore.shouldDisplaySettingsButton = true
+layoutStore.shouldDisplayLanguagesSwitcher = false
 
 const currentTab = ref(0)
 const profileTabs = ref<Array<TabConfig>>([

@@ -14,5 +14,8 @@ definePageMeta({
 const { t } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('matcher.pageTitle')
+layoutStore.shouldDisplayHomeButton = true
+layoutStore.shouldDisplaySettingsButton = true
+layoutStore.shouldDisplayLanguagesSwitcher = false
 </script>
 <style scoped></style>

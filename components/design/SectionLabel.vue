@@ -1,13 +1,8 @@
 <template>
   <div
-    class="ml-3 flex w-max px-2 h-[28px] flex flex-col -skew-x-[30deg] bg-light_mercury text-contrast border-black"
+    class="flex w-max px-2 h-7 flex flex-col rounded-r bg-light_mercury text-contrast border-black"
   >
-    <Text
-      class="skew-x-[30deg] my-auto"
-      font-size="s"
-      :value="label"
-      :upper="upper"
-    ></Text>
+    <Text class="my-auto" font-size="s" :value="label" :upper="upper"></Text>
   </div>
 </template>
 

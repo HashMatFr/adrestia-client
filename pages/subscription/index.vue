@@ -19,4 +19,7 @@ import Text from '~/components/design/Text.vue'
 const { t } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('subscription.pageTitle')
+layoutStore.shouldDisplayHomeButton = true
+layoutStore.shouldDisplaySettingsButton = true
+layoutStore.shouldDisplayLanguagesSwitcher = false
 </script>

@@ -48,19 +48,14 @@ const route = useRoute()
 const profileStore = useProfileStore()
 
 const shouldDisplaySwitcher = computed(() => {
-  return (
-    route.name.includes('login') ||
-    route.name.includes('register') ||
-    route.name.includes('reset-password') ||
-    route.name.includes('settings')
-  )
+  return layoutStore.shouldDisplayLanguagesSwitcher
 })
 
 const shouldDisplayHome = computed(() => {
-  return !route.name.includes('home') && profileStore.profileId
+  return profileStore.profileId && layoutStore.shouldDisplayHomeButton
 })
 
 const shouldDisplaySettings = computed(() => {
-  return !route.name.includes('settings') && profileStore.profileId
+  return profileStore.profileId && layoutStore.shouldDisplaySettingsButton
 })
 </script>

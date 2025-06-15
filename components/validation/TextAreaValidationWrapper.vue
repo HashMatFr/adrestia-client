@@ -4,7 +4,7 @@
       :id="id"
       v-model="inputValue"
       :disabled="disabled"
-      :required="rules ? rules.includes('required') : false"
+      :required="isRequired"
       :valid="valid && value !== ''"
       :invalid="error !== ''"
       :placeholder="placeholder"
@@ -25,14 +25,17 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, PropType, ref, watch } from 'vue'
 import { useValidationRules } from '../../composables/useValidationRules'
 import CustomTextArea from '../design/CustomTextArea.vue'
+import { ValidationRule } from '~/constants/types'
 
 const props = defineProps({
   rules: {
-    type: String,
-    default: '',
+    type: Array as PropType<Array<ValidationRule>>,
+    default: () => {
+      return []
+    },
   },
   placeholder: {
     type: String,
@@ -80,10 +83,19 @@ const props = defineProps({
 })
 const emit = defineEmits(['is-field-valid'])
 const validationRules = useValidationRules()
-const inputValue = ref('')
-inputValue.value = props.value
+let inputValue = ref(props.value)
+watch(
+  () => props.value,
+  (newVal) => {
+    inputValue.value = newVal
+  },
+)
 const error = ref('')
 const valid = ref(false)
+
+const isRequired = computed(() => {
+  return props.rules?.findIndex((r) => r.name === 'required') > -1
+})
 
 function handleChangeField(name: string, value: string) {
   let dummyValue = value
@@ -98,7 +110,7 @@ function validate() {
   error.value = ''
   let dummyValid = false
 
-  props.rules.split('|').forEach((rule) => {
+  props.rules.forEach((rule: ValidationRule) => {
     if (error.value === '') {
       const result = applyRule(rule)
       if (typeof result === 'boolean') {
@@ -112,7 +124,7 @@ function validate() {
   valid.value = dummyValid
   emit('is-field-valid', dummyValid)
 }
-function validateAgainstRule(rule: string): boolean {
+function validateAgainstRule(rule: ValidationRule): boolean {
   const result = applyRule(rule)
   if (typeof result === 'boolean') {
     valid.value = result
@@ -123,23 +135,12 @@ function validateAgainstRule(rule: string): boolean {
     return false
   }
 }
-function applyRule(rule: string) {
-  const splitRuleFromParam = rule.split(':')
+function applyRule(rule: ValidationRule) {
   let result
-  if (splitRuleFromParam.length === 1) {
-    result = validationRules[rule](inputValue.value)
-  } else if (splitRuleFromParam.length === 2) {
-    if (isNaN(splitRuleFromParam[1])) {
-      result = validationRules[splitRuleFromParam[0]](
-        inputValue.value,
-        splitRuleFromParam[1],
-      )
-    } else {
-      result = validationRules[splitRuleFromParam[0]](
-        inputValue.value,
-        parseInt(splitRuleFromParam[1]),
-      )
-    }
+  if (!rule.param) {
+    result = validationRules[rule.name](inputValue.value)
+  } else {
+    result = validationRules[rule.name](inputValue.value, rule.param)
   }
   return result
 }

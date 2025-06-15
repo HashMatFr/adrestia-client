@@ -12,7 +12,11 @@
             ref="firstAnswerRef"
             name="firstAnswer"
             :on-change="handleChangeField"
-            :rules="'required'"
+            :rules="[
+              { name: 'required' },
+              { name: 'unicodeLettersOrDigits' },
+              { name: 'max', param: 100 },
+            ]"
             :value="firstAnswer"
             @is-field-valid="(event) => (form.firstAnswer = event)"
           />
@@ -25,7 +29,11 @@
             ref="secondAnswerRef"
             name="secondAnswer"
             :on-change="handleChangeField"
-            :rules="'required'"
+            :rules="[
+              { name: 'required' },
+              { name: 'unicodeLettersOrDigits' },
+              { name: 'max', param: 100 },
+            ]"
             :value="secondAnswer"
             @is-field-valid="(event) => (form.secondAnswer = event)"
           />

@@ -385,7 +385,7 @@ export default {
   validateEmail: {
     pageTitle: 'Confirmer mon adresse mail',
     explanation:
-      'Afin de confirmer ton adresse mail, saisis le code à 6 chiffres que tu as reçu par mail lors de la création de ton compte :',
+      'Afin de confirmer ton adresse mail, saisis le code à 6 caractères que tu as reçu par mail lors de la création de ton compte :',
     code: 'Code de validation',
     notReceived:
       'Tu n’as pas reçu le mail contenant le code de validation (y compris dans le dossier spam) ?',
@@ -408,6 +408,11 @@ export default {
     description: 'Un abonnement te permettra de :',
     description2: 'Débloquer et accéder à chacun de tes likes reçus',
     description3: 'Désactiver les publicités sur l’application',
+  },
+  matches: {
+    pageTitle: 'Mes matches prioritaires',
+    warning:
+      'Un match n’est pas anodin sur cette application. Afin de garantir la meilleure expérience, seuls tes {count} premiers matches sont visibles. Découvres-en davantage sur chacun d’entre eux, ou supprime les si il n’y a malheureusement pas d’intérêt mutuel',
   },
   actions: {
     terminate: 'Terminer',
@@ -438,10 +443,8 @@ export default {
     usernameFirstCharacterMustBeALetter:
       'Le premier caractère doit être une lettre',
     mandatoryField: 'Ce champ est obligatoire',
+    invalidCharacter: 'Ce champ contient un caractère invalide',
     mustNotContainANumber: 'Ce champ ne doit pas contenir de chiffre',
-    minDigits: 'Ce champ doit contenir au minimum {limit} chiffres',
-    maxDigits: 'Ce champ doit contenir au maximum {limit} chiffres',
-    equalDigits: 'Ce champ doit contenir {limit} chiffres',
     minLength: 'Ce champ doit contenir au minimum {limit} caractères',
     maxLength: '{limit} caractères au maximum sont autorisés pour ce champ',
     email: {

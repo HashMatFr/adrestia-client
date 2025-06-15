@@ -32,6 +32,9 @@ const { t } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('register.pageTitle')
 layoutStore.isRegisterFlow = true
+layoutStore.shouldDisplayHomeButton = false
+layoutStore.shouldDisplaySettingsButton = false
+layoutStore.shouldDisplayLanguagesSwitcher = true
 
 const stepIndex = ref(1)
 

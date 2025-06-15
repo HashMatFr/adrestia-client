@@ -11,9 +11,13 @@
           ref="validationCodeRef"
           :label="t('validateEmail.code')"
           name="validationCode"
-          type="number"
+          type="string"
           :on-change="handleChangeField"
-          :rules="'required|equalDigits:6'"
+          :rules="[
+            { name: 'required' },
+            { name: 'latinAlphabetOrDigits' },
+            { name: 'max', param: 6 },
+          ]"
           :value="validationCode.toString()"
           @is-field-valid="(event) => (form.validationCode = event)"
         />

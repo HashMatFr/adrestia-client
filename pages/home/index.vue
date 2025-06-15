@@ -26,6 +26,9 @@ definePageMeta({
 const { t, locale } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('home.pageTitle')
+layoutStore.shouldDisplayHomeButton = false
+layoutStore.shouldDisplaySettingsButton = true
+layoutStore.shouldDisplayLanguagesSwitcher = false
 const switchLocalePath = useSwitchLocalePath()
 
 const profileStore = useProfileStore()

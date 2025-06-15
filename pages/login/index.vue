@@ -30,6 +30,8 @@ definePageMeta({
 const { t } = useI18n()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('login.pageTitle')
+layoutStore.shouldDisplayHomeButton = false
+layoutStore.shouldDisplayLanguagesSwitcher = true
 const localePath = useLocalePath()
 
 authService.trySilentLogin()
