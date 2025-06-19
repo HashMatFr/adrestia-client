@@ -23,6 +23,7 @@ import { Match } from '~/constants/types'
 import Text from '../design/Text.vue'
 import { useMatchesStore } from '~/stores/matchesStore'
 import { useFilesService } from '~/composables/useFilesService'
+import { useActiveMatchStore } from '~/stores/activeMatchStore'
 
 const props = defineProps({
   match: {
@@ -33,6 +34,7 @@ const props = defineProps({
 
 const localePath = useLocalePath()
 const matchesStore = useMatchesStore()
+const activeMatchStore = useActiveMatchStore()
 
 const interlocutorAvatar = ref(null)
 interlocutorAvatar.value =
@@ -61,7 +63,12 @@ const lastMessageContent = computed(() => {
 })
 
 function goToConversation() {
-  matchesStore.focusedMatch = props.match
-  return navigateTo(localePath('/matches/' + props.match.matchId))
+  activeMatchStore.focusedMatch = JSON.parse(JSON.stringify(props.match))
+  return navigateTo(
+    localePath({
+      name: 'matches-matchId',
+      params: { matchId: props.match.matchId },
+    }),
+  )
 }
 </script>

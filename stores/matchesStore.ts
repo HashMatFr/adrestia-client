@@ -1,3 +1,4 @@
+import { defineStore } from 'pinia'
 import { Avatar, Match, ProfileToBrowse } from '~/constants/types'
 
 export const useMatchesStore = defineStore('matches', {
@@ -5,7 +6,7 @@ export const useMatchesStore = defineStore('matches', {
     matches: <Match[]>[],
     avatars: <Avatar[]>[],
     profilesToBrowse: <ProfileToBrowse[]>[],
-    focusedMatch: <Match>null,
+    messages: [],
   }),
   getters: {},
   actions: {

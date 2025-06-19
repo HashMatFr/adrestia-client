@@ -406,6 +406,16 @@ export default {
     warning:
       'A Match is not to be taken lightly here. To guarantee the best possible experience, only your first {count} matches are visible. Discover more about them, or delete them if there is unfortunately no mutual interest.',
   },
+  match: {
+    deletionModalTitle: 'Delete or block Match',
+    deletionModalExplanation:
+      'Are you sure to want to delete or block this Match ? Blocking it means you will not be able to see or match with it again in the future.',
+  },
+  message: {
+    deletedMessageLabel: 'Deleted message',
+    deletionModalTitle: 'Message deletion',
+    deletionModalExplanation: 'Are you sure to want to delete this message ?',
+  },
   actions: {
     terminate: 'Terminate',
     validate: 'Validate',

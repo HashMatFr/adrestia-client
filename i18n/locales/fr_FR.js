@@ -414,6 +414,16 @@ export default {
     warning:
       'Un match n’est pas anodin sur cette application. Afin de garantir la meilleure expérience, seuls tes {count} premiers matches sont visibles. Découvres-en davantage sur chacun d’entre eux, ou supprime les si il n’y a malheureusement pas d’intérêt mutuel',
   },
+  match: {
+    deletionModalTitle: 'Supprimer ou bloquer le Match',
+    deletionModalExplanation:
+      'Es-tu sûr(e) de vouloir supprimer ou bloquer ce Match ? Le bloquer signifie que tu ne pourras plus ni voir ni matcher ce profil à l’avenir.',
+  },
+  message: {
+    deletedMessageLabel: 'Message supprimé',
+    deletionModalTitle: 'Suppression d’un message',
+    deletionModalExplanation: 'Es-tu sûr(e) de vouloir supprimer ce message ?',
+  },
   actions: {
     terminate: 'Terminer',
     validate: 'Valider',

@@ -2,7 +2,7 @@
   <div class="w-full px-5 pt-20 flex flex-col gap-5 pb-24">
     <Text :value="t('matches.warning', { count: matchesLimit })"></Text>
     <div class="w-full flex flex-col gap-3 justify-center">
-      <MatchCard v-for="match in matchesStore.matches"></MatchCard>
+      <MatchCard v-for="mtd in matchesStore.matches" :match="mtd"></MatchCard>
     </div>
   </div>
 </template>

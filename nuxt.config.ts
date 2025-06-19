@@ -194,15 +194,10 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      httpProxy: '',
-      captchaUrl: '',
-      captchaSitekey: '',
-      captchaSecret: '',
       appName: '',
       keycloakRemoteHost: '',
       keycloakRealm: '',
       keycloakClientId: '',
-      keycloakChangeEmail: '',
       baseUrl: '',
       apiUrl: '',
       apiPrefix: '',

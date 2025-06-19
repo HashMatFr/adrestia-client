@@ -98,6 +98,7 @@ export type Message = {
   interlocutorProfileId: string
   content: string
   hasBeenRead: boolean
+  hasBeenLogicallyDeleted: boolean
   createdAt: string
 }
 
