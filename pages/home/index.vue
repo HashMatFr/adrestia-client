@@ -16,8 +16,10 @@ import ProfileStatus from '~/components/home/ProfileStatus.vue'
 import { useStateService } from '~/composables/useStateService'
 import { useStateStore } from '~/stores/stateStore'
 import { usePhotosStore } from '~/stores/photosStore'
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import SubscriptionStatus from '~/components/home/SubscriptionStatus.vue'
+import { useMatchesService } from '~/composables/useMatchesService'
+import { usePropertiesStore } from '~/stores/propertiesStore'
 
 definePageMeta({
   layout: 'default',
@@ -84,4 +86,32 @@ async function loadComplementaryInfos() {
     }
   })
 }
+
+// Recursive timeout for matches short polling
+const propertiesStore = usePropertiesStore()
+const matchesService = useMatchesService()
+const pollingTimeout = ref(null)
+let delay = propertiesStore.getPropertyValueByKey('matchesShortPollingDelay')
+  ? Number.parseInt(
+      propertiesStore.getPropertyValueByKey('matchesShortPollingDelay'),
+    )
+  : 60000 // default initial delay
+
+function startShortPolling() {
+  pollingTimeout.value = setTimeout(function () {
+    matchesService.getMatchesByProfileId()
+    startShortPolling()
+  }, delay)
+}
+
+onMounted(() => {
+  matchesService.getMatchesByProfileId()
+  startShortPolling()
+})
+
+onUnmounted(() => {
+  if (pollingTimeout.value) {
+    clearTimeout(pollingTimeout.value)
+  }
+})
 </script>

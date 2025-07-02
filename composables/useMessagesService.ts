@@ -1,20 +1,20 @@
 import { Message } from '~/constants/types'
 import { $adrestia } from './adrestiaFetch'
-import { useMessagesStore } from '~/stores/messagesStore'
+import { useActiveMatchStore } from '~/stores/activeMatchStore'
 
 export const useMessagesService = () => {
-  const getMessagesByMatchId = async (matchId: string) => {
+  const updateMessagesByMatchId = async (matchId: string) => {
     try {
-      const url = 'messages/get-messages-by-match-id'
+      const url = 'messages/by-match-id'
       const response: Message[] = await $adrestia(url, {
-        method: 'GET',
+        method: 'POST',
         params: { matchId },
       })
 
-      const messagesStore = useMessagesStore()
+      const activeMatchStore = useActiveMatchStore()
 
       if (response.length > 0) {
-        messagesStore.messagesByMatch = response
+        activeMatchStore.messages = response
       }
     } catch (error) {
       return error
@@ -22,50 +22,62 @@ export const useMessagesService = () => {
   }
 
   const addMessage = async (matchId: string, message: Message) => {
-    try {
-      const url = 'messages/add-message'
-      const response: Message = await $adrestia(url, {
-        method: 'POST',
-        body: message,
-        params: {
-          matchId,
-        },
+    const url = 'messages'
+    const activeMatchStore = useActiveMatchStore()
+    $adrestia(url, {
+      method: 'POST',
+      body: message,
+      params: {
+        matchId,
+      },
+    })
+      .then((result: Message) => {
+        activeMatchStore.addMessage(result)
       })
-      return response
-    } catch (error) {
-      return error
-    }
+      .catch((error) => {
+        console.log(error)
+        const { t } = useI18n()
+        activeMatchStore.errorMessage = t('message.errors.add')
+      })
   }
 
   const updateMessageContent = async (message: Message) => {
-    try {
-      const url = 'messages/update-message-content'
-      const response: Message = await $adrestia(url, {
-        method: 'PUT',
-        body: message,
+    const url = 'messages'
+    const activeMatchStore = useActiveMatchStore()
+    $adrestia(url, {
+      method: 'PUT',
+      body: message,
+    })
+      .then((result: Message) => {
+        activeMatchStore.updateMessage(result)
       })
-      return response
-    } catch (error) {
-      return error
-    }
+      .catch((error) => {
+        console.log(error)
+        const { t } = useI18n()
+        activeMatchStore.errorMessage = t('message.errors.update')
+      })
   }
 
-  const deleteMessage = async (id: string) => {
-    try {
-      const url = 'messages/delete-message/'
-      const response: string = await $adrestia(url + id, {
-        method: 'DELETE',
+  const logicallyDeleteMessage = async (id: string) => {
+    const url = 'messages/logically-delete-message/'
+    const activeMatchStore = useActiveMatchStore()
+    $adrestia(url + id, {
+      method: 'DELETE',
+    })
+      .then((result: Message) => {
+        activeMatchStore.updateMessage(result)
       })
-      return response
-    } catch (error) {
-      return error
-    }
+      .catch((error) => {
+        console.log(error)
+        const { t } = useI18n()
+        activeMatchStore.errorMessage = t('message.errors.delete')
+      })
   }
 
   return {
-    getMessagesByMatchId,
+    updateMessagesByMatchId,
     addMessage,
     updateMessageContent,
-    deleteMessage,
+    logicallyDeleteMessage,
   }
 }

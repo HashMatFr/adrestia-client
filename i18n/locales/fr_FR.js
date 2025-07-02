@@ -423,6 +423,11 @@ export default {
     deletedMessageLabel: 'Message supprimé',
     deletionModalTitle: 'Suppression d’un message',
     deletionModalExplanation: 'Es-tu sûr(e) de vouloir supprimer ce message ?',
+    errors: {
+      add: 'L’envoi du message a échoué',
+      update: 'L’édition du message a échoué',
+      delete: 'La suppression du message a échoué',
+    },
   },
   actions: {
     terminate: 'Terminer',

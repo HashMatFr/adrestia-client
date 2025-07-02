@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'flex flex-row justify-between w-full rounded gap-5 items-center p-2',
+      'flex flex-row justify-between w-full rounded gap-5 items-center p-2 shadow-base',
       { 'bg-coal-900': canBeDisplayed, 'bg-coal-400': !canBeDisplayed },
     ]"
     @click="displayLikingProfile"

@@ -7,7 +7,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import MatchCard from '~/components/matches/MatchCard.vue'
 import { useMatchesService } from '~/composables/useMatchesService'
 import { usePropertiesService } from '~/composables/usePropertiesService'
@@ -39,6 +39,30 @@ layoutStore.shouldDisplayLanguagesSwitcher = false
 const propertiesService = usePropertiesService()
 propertiesService.getClientProperties()
 
+// Recursive timeout for matches short polling
 const matchesService = useMatchesService()
-matchesService.getMatchesByProfileId()
+const pollingTimeout = ref(null)
+let delay = propertiesStore.getPropertyValueByKey('matchesShortPollingDelay')
+  ? Number.parseInt(
+      propertiesStore.getPropertyValueByKey('matchesShortPollingDelay'),
+    )
+  : 60000 // default initial delay
+
+function startShortPolling() {
+  pollingTimeout.value = setTimeout(function () {
+    matchesService.getMatchesByProfileId()
+    startShortPolling()
+  }, delay)
+}
+
+onMounted(() => {
+  matchesService.getMatchesByProfileId()
+  startShortPolling()
+})
+
+onUnmounted(() => {
+  if (pollingTimeout.value) {
+    clearTimeout(pollingTimeout.value)
+  }
+})
 </script>

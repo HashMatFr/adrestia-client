@@ -1,19 +1,18 @@
 <template>
-  <div class="w-full flex flex-row" @click="goToConversation">
-    <div
-      class="flex flex-row justify-between w-full bg-coal-900 rounded p-2 gap-3"
-    >
-      <div class="w-10 h-10 flex rounded-full bg-coal-700"></div>
-      <div class="flex flex-col gap-2 w-full my-auto">
-        <Text
-          :value="
-            match.interlocutorProfile.username +
-            ', ' +
-            match.interlocutorProfile.detailDto.age
-          "
-        ></Text>
-        <Text v-if="lastMessageContent" :value="lastMessageContent"></Text>
-      </div>
+  <div
+    class="flex flex-row justify-between w-full bg-coal-900 rounded p-2 gap-3 shadow-base"
+    @click="goToConversation"
+  >
+    <div class="w-10 h-10 flex rounded-full bg-coal-700"></div>
+    <div class="flex flex-col gap-2 w-full my-auto">
+      <Text
+        :value="
+          match.interlocutorProfile.username +
+          ', ' +
+          match.interlocutorProfile.detailDto.age
+        "
+      ></Text>
+      <Text v-if="lastMessageContent" :value="lastMessageContent"></Text>
     </div>
   </div>
 </template>

@@ -99,6 +99,7 @@ export type Message = {
   content: string
   hasBeenRead: boolean
   hasBeenLogicallyDeleted: boolean
+  hasBeenModified: boolean
   createdAt: string
 }
 

@@ -19,7 +19,7 @@
     <div
       v-if="message.hasBeenLogicallyDeleted"
       :class="[
-        'flex gap-1 w-full p-2 rounded w-full',
+        'flex flex-col gap-1 w-full p-2 rounded w-full shadow-base',
         {
           'ml-auto mr-0 bg-silver-500 text-primary': isUserMessage,
           'mr-auto ml-0 bg-coal-900 text-inverted': !isUserMessage,
@@ -32,6 +32,10 @@
         class="flex self-end"
       ></Text>
       <Text :value="message.content" class="w-full flex"></Text>
+      <div class="flex w-full items-end text-neon_blue">
+        <DoubleCheck v-if="isUserMessage && message.hasBeenRead"></DoubleCheck>
+        <SingleCheck v-else-if="isUserMessage"></SingleCheck>
+      </div>
     </div>
     <div
       v-else
@@ -58,6 +62,8 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import Modify from '../icons/Modify.vue'
 import GarbageCan from '../icons/GarbageCan.vue'
 import { useActiveMatchStore } from '~/stores/activeMatchStore'
+import SingleCheck from '../icons/SingleCheck.vue'
+import DoubleCheck from '../icons/DoubleCheck.vue'
 
 dayjs.extend(relativeTime)
 

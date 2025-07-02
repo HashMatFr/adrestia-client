@@ -415,6 +415,11 @@ export default {
     deletedMessageLabel: 'Deleted message',
     deletionModalTitle: 'Message deletion',
     deletionModalExplanation: 'Are you sure to want to delete this message ?',
+    errors: {
+      add: 'Sending the message failed',
+      update: 'Editing the message failed',
+      delete: 'Deleting the message failed',
+    },
   },
   actions: {
     terminate: 'Terminate',

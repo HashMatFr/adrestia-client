@@ -5,7 +5,7 @@ import { useMatchesStore } from '~/stores/matchesStore'
 export const useMatchesService = () => {
   const getMatchesByProfileId = async () => {
     try {
-      const url = 'matches/get-matches-by-profile-id'
+      const url = 'matches/by-profile-id'
       const response: Match[] = await $adrestia(url, {
         method: 'GET',
       })
@@ -22,7 +22,7 @@ export const useMatchesService = () => {
 
   const deleteMatch = async (id: string) => {
     try {
-      const url = 'matches/delete-match/'
+      const url = 'matches/'
       const response: string = await $adrestia(url + id, {
         method: 'DELETE',
       })

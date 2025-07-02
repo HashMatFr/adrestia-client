@@ -13,7 +13,12 @@
         </div>
       </div>
     </div>
-    <div class="w-full py-2"></div>
+
+    <Conversation
+      @edit-existing-message="editExistingMessage"
+      @send-new-message="sendNewMessage"
+      @delete-message="logicallyDeleteMessage"
+    ></Conversation>
 
     <!-- Block or Delete Match Modal -->
     <Modal
@@ -64,9 +69,13 @@ import Modal from '~/components/global/Modal.vue'
 import ArrowLeft from '~/components/icons/ArrowLeft.vue'
 import BlockSymbol from '~/components/icons/BlockSymbol.vue'
 import GarbageCan from '~/components/icons/GarbageCan.vue'
-import { Match } from '~/constants/types'
+import Conversation from '~/components/matches/Conversation.vue'
+import { useMessagesService } from '~/composables/useMessagesService'
+import { Match, Message } from '~/constants/types'
 import { useActiveMatchStore } from '~/stores/activeMatchStore'
 import { useLayoutStore } from '~/stores/layoutStore'
+import { useProfileStore } from '~/stores/profileStore'
+import { usePropertiesStore } from '~/stores/propertiesStore'
 
 definePageMeta({
   layout: 'default',
@@ -77,6 +86,10 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const layoutStore = useLayoutStore()
 const activeMatchStore = useActiveMatchStore()
+const profileStore = useProfileStore()
+const propertiesStore = usePropertiesStore()
+
+const messagesService = useMessagesService()
 
 const displayedMatch = computed<Match>(() => {
   return activeMatchStore.focusedMatch
@@ -111,61 +124,64 @@ function deleteMatch() {}
 
 function blockMatch() {}
 
-// CONVERSATION WebSocket
-const ws = ref(null) // WebSocket connection
-const isConnected = ref(false) // Connection status
-const retryInterval = 3000 // Time interval for retrying connection (ms)
-let retryTimeout = null // Timeout reference for reconnection
+// Recursive timeout for match messages short polling
+const pollingTimeout = ref(null)
+let delay = propertiesStore.getPropertyValueByKey(
+  'messagesOfMatchShortPollingDelay',
+)
+  ? Number.parseInt(
+      propertiesStore.getPropertyValueByKey('messagesOfMatchShortPollingDelay'),
+    )
+  : 10000 // default initial delay
 
-const connectWebSocket = () => {
-  ws.value = new WebSocket(
-    '/api/adrestia/active-match/' + displayedMatch.value.matchId,
-  )
-
-  ws.value.onopen = () => {
-    isConnected.value = true
-    if (retryTimeout) {
-      clearTimeout(retryTimeout) // Clear the retry timeout on successful connection
-      retryTimeout = null
-    }
-  }
-
-  ws.value.onmessage = (event) => {
-    activeMatchStore.addMessage(event.data)
-  }
-
-  ws.value.onerror = (error) => {
-    isConnected.value = false
-  }
-
-  ws.value.onclose = () => {
-    isConnected.value = false
-    attemptReconnect() // Trigger reconnection process when the connection closes
-  }
-}
-
-// Retry connection mechanism
-const attemptReconnect = () => {
-  if (!isConnected.value) {
-    retryTimeout = setTimeout(() => {
-      connectWebSocket()
-    }, retryInterval)
-  }
+function startShortPolling() {
+  pollingTimeout.value = setTimeout(function () {
+    messagesService.updateMessagesByMatchId(displayedMatch.value.matchId)
+    startShortPolling()
+  }, delay)
 }
 
 onMounted(() => {
-  connectWebSocket()
+  messagesService.updateMessagesByMatchId(displayedMatch.value.matchId)
+  startShortPolling()
 })
 
 onUnmounted(() => {
+  if (pollingTimeout.value) {
+    clearTimeout(pollingTimeout.value)
+  }
   activeMatchStore.focusedMatch = null
   activeMatchStore.messages = null
   activeMatchStore.focusedMessage = null
-  if (ws.value) {
-    ws.value.close()
-  }
-  if (retryTimeout) {
-    clearTimeout(retryTimeout)
-  }
 })
+
+function editExistingMessage(newContent) {
+  let existingMessage = activeMatchStore.focusedMessage
+  existingMessage.content = newContent
+  messagesService.updateMessageContent(existingMessage)
+}
+
+function sendNewMessage(newContent) {
+  let newMessage: Message = {
+    messageId: '',
+    createdAt: '',
+    hasBeenLogicallyDeleted: false,
+    hasBeenModified: false,
+    hasBeenRead: false,
+    matchId: activeMatchStore.focusedMatch.matchId,
+    authorProfileId: profileStore.profileId,
+    content: newContent,
+    interlocutorProfileId:
+      activeMatchStore.focusedMatch.interlocutorProfile.profileId,
+  }
+  messagesService.addMessage(displayedMatch.value.matchId, newMessage)
+}
+
+function logicallyDeleteMessage() {
+  if (activeMatchStore.focusedMessage?.messageId) {
+    messagesService.logicallyDeleteMessage(
+      activeMatchStore.focusedMessage.messageId,
+    )
+  }
+}
 </script>
