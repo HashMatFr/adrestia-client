@@ -31,6 +31,12 @@
         </nuxt-link>
       </div>
     </div>
+
+    <Announcement
+      v-if="layoutStore.error"
+      :value="layoutStore.error"
+      @close-announcement="clearError"
+    ></Announcement>
   </div>
 </template>
 <script setup lang="ts">
@@ -41,10 +47,10 @@ import { useProfileStore } from '~/stores/profileStore'
 import LangSwitcher from '../global/LangSwitcher.vue'
 import House from '../icons/House.vue'
 import { computed } from 'vue'
+import Announcement from '../design/Announcement.vue'
 
 const layoutStore = useLayoutStore()
 const localePath = useLocalePath()
-const route = useRoute()
 const profileStore = useProfileStore()
 
 const shouldDisplaySwitcher = computed(() => {
@@ -58,4 +64,8 @@ const shouldDisplayHome = computed(() => {
 const shouldDisplaySettings = computed(() => {
   return profileStore.profileId && layoutStore.shouldDisplaySettingsButton
 })
+
+function clearError() {
+  layoutStore.error = null
+}
 </script>

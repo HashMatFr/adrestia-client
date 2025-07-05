@@ -14,6 +14,10 @@ export type RegisterProfile = {
   email: string
   password: string
   locale: string
+  sex: string
+  orientation: string
+  age: number
+  size: number
 }
 
 export type Coordinates = {
@@ -62,7 +66,6 @@ export type Matcher = {
   politicalView: string
   fitness: string
   religion: string
-  sexInterestedIn: string
   distance: number
 }
 

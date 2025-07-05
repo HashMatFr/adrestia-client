@@ -35,7 +35,7 @@
     </ProfileItem>
 
     <div
-      class="flex flex-col fixed left-0 w-full p-2 gap-2 bg-coal-800 bottom-20"
+      class="flex flex-row fixed left-0 w-full p-2 gap-2 bg-coal-800 bottom-20"
     >
       <CustomButton
         class="w-full"
@@ -45,8 +45,7 @@
         @click="navigateTo(localePath('/photos'))"
       >
         <template #iconStart> <Photo class="mr-3" /> </template>
-        <template #iconEnd> <ArrowLeft class="ml-3 rotate-180" /> </template
-      ></CustomButton>
+      </CustomButton>
       <CustomButton
         :label="t('actions.modify')"
         class="w-full"

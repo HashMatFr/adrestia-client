@@ -34,8 +34,6 @@ export default {
       activationWarning: 'Your profile currently is in pause mode.',
       photosWarning:
         'Your profile should have at least two photos to be visible, active and able to browse other profiles.',
-      descriptionWarning:
-        'Some infos of your profile’s description are required.',
       noWarnings: 'Your profile is completed and active.',
     },
   },
@@ -94,7 +92,7 @@ export default {
   detail: {
     tabTitle: 'Details',
     description: {
-      sex: 'I am a<span class="text-alert-500">*</span>',
+      sex: 'I am a',
       orientation: 'My sexual orientation',
       age: 'My age',
       size: 'My height',
@@ -199,7 +197,6 @@ export default {
       politicalView: 'Politically viewing himself or herself as',
       fitness: 'Enjoying one of this lifestyle',
       religion: 'Can be of one of these faiths',
-      sexInterestedIn: 'Must be',
       orientation: 'His orientation',
     },
     enums: {
@@ -259,10 +256,6 @@ export default {
         AGNOSTIC: 'Agnostic',
         OTHER: 'Other',
       },
-      sexInterestedIn: {
-        M: 'a Male',
-        F: 'a Female',
-      },
       orientation: {
         NOT_AVAILABLE: 'Not shared',
         HETEROSEXUAL: 'Straight',
@@ -300,6 +293,7 @@ export default {
     email: 'Email, your account’s identifier',
     password: 'Password',
     confirmPassword: 'Password confirmation',
+    canNotBeChangeLater: 'This data will not be editable later',
     confirmation: {
       title: 'Your account has been created with success !',
       description1:
@@ -311,6 +305,7 @@ export default {
       description4:
         'Adrestia thanks you for your trust and hopes to live up to your expectations !',
     },
+    error: 'Erreur, ton compte n’a pas pu être créé, réessaye plus tard',
   },
   settings: {
     pageTitle: 'Settings',
@@ -436,7 +431,7 @@ export default {
     dislike: 'Dislike',
     rewind: 'Rewind',
     changeCriteria: 'Modify my Matcher',
-    managePhotos: 'Manage my photos',
+    managePhotos: 'My photos',
     logout: 'Logout',
     deactivate: 'Pause my profile',
     reactivate: 'Reactivate my profile',

@@ -7,14 +7,17 @@
 <script setup lang="ts">
 import { authService } from '~/authentication/authService'
 import BaseLoader from '../components/global/BaseLoader.vue'
+import { onMounted } from 'vue'
 
 definePageMeta({
   layout: 'empty',
 })
 const localePath = useLocalePath()
 
-authService.trySilentLogin()
-navigateTo(localePath('/home'))
+onMounted(() => {
+  authService.trySilentLogin()
+  navigateTo(localePath('/home'))
+})
 </script>
 <style scoped>
 .page__loader {

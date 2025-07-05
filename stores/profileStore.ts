@@ -22,8 +22,8 @@ export const useProfileStore = defineStore('profile', {
       politicalView: 'NOT_AVAILABLE',
       fitness: 'NOT_AVAILABLE',
       religion: 'NOT_AVAILABLE',
-      sex: 'NOT_AVAILABLE',
-      orientation: 'NOT_AVAILABLE',
+      sex: 'M',
+      orientation: 'HETEROSEXUAL',
     },
     matcher: {
       matcherId: '',
@@ -42,7 +42,6 @@ export const useProfileStore = defineStore('profile', {
       fitness: 'NOT_AVAILABLE,SEDENTARY,ATHLETE,ACTIVE',
       religion:
         'NOT_AVAILABLE,CHRISTIAN,MUSLIM,JEWISH,HINDU,SPIRITUAL,ATHEIST,AGNOSTIC,OTHER',
-      sexInterestedIn: 'M,F',
       orientation: 'NOT_AVAILABLE,HETEROSEXUAL,HOMOSEXUAL,BISEXUAL',
       distance: 20,
     },
@@ -76,8 +75,6 @@ export const useProfileStore = defineStore('profile', {
         payload.politicalView ?? this.matcher.politicalView
       this.matcher.fitness = payload.fitness ?? this.matcher.fitness
       this.matcher.religion = payload.religion ?? this.matcher.religion
-      this.matcher.sexInterestedIn =
-        payload.sexInterestedIn ?? this.matcher.sexInterestedIn
       this.matcher.orientation = payload.orientation ?? this.matcher.orientation
       this.matcher.distance = payload.distance ?? this.matcher.distance
     },

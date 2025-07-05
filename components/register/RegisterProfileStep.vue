@@ -70,10 +70,9 @@
         <CustomButton
           class="w-full"
           type="submit"
-          :label="t('actions.validate')"
+          :label="t('actions.next')"
           :base="true"
           :outline="false"
-          :category="'success'"
         ></CustomButton>
       </div>
     </form>
@@ -127,27 +126,13 @@ async function verifyEmail() {
   emailAlreadyExist.value = false
   try {
     await profileService.verifyEmail(email.value)
-    createProfile()
+    nextRegisterStep()
   } catch (error) {
+    console.log(error)
     if (layoutStore.fetchError && layoutStore.fetchError.status === 409) {
       emailAlreadyExist.value = true
       layoutStore.fetchError = null
     }
-  }
-}
-
-async function createProfile() {
-  try {
-    const registerProfile = {
-      username: username.value,
-      email: email.value,
-      password: password.value,
-      locale: profileStore.locale,
-    }
-    await profileService.registerProfile(registerProfile)
-    nextRegisterStep()
-  } catch (error) {
-    layoutStore.fetchError = null
   }
 }
 

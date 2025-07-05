@@ -2,7 +2,6 @@ export const useMatcherStore = defineStore('matcher', {
   state: () => ({
     newMatcher: {
       matcherId: '',
-      sexInterestedIn: [],
       minAge: 18,
       maxAge: 100,
       distance: 15,

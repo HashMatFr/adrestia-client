@@ -23,9 +23,9 @@
     </div>
     <CustomButton
       :label="t('actions.login')"
-      class="w-full text-black"
+      class="w-full"
       :base="true"
-      :outline="true"
+      :outline="false"
       @click="navigateTo(localePath('/login'))"
     />
   </div>

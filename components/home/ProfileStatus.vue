@@ -1,7 +1,9 @@
 <template>
   <div class="w-full flex flex-col text-center">
     <SectionLabel :label="t('home.profileStatus.label')"></SectionLabel>
-    <div class="w-full p-2 flex flex-col gap-5 bg-coal-900 rounded">
+    <div
+      class="w-full p-2 flex flex-col gap-5 bg-coal-900 rounded-b rounded-tr"
+    >
       <ProgressCircle
         :steps="statusSteps"
         :currentIndex="currentIndex"
@@ -32,7 +34,6 @@
 import { useStateStore } from '~/stores/stateStore'
 import Text from '../design/Text.vue'
 import { computed, ref } from 'vue'
-import { useProfileStore } from '~/stores/profileStore'
 import CustomButton from '../design/CustomButton.vue'
 import ArrowLeft from '../icons/ArrowLeft.vue'
 import SectionLabel from '../design/SectionLabel.vue'
@@ -42,7 +43,6 @@ import Pause from '../icons/Pause.vue'
 
 const { t } = useI18n()
 const stateStore = useStateStore()
-const profileStore = useProfileStore()
 
 const statusSteps = ref<ProgressStep[]>([
   {
@@ -52,10 +52,6 @@ const statusSteps = ref<ProgressStep[]>([
   {
     stepLabel: t('home.profileStatus.photosWarning'),
     stepRequiredPage: '/photos',
-  },
-  {
-    stepLabel: t('home.profileStatus.descriptionWarning'),
-    stepRequiredPage: '/profile?description=true',
   },
   {
     stepLabel: t('home.profileStatus.noWarnings'),
@@ -69,8 +65,6 @@ const currentIndex = computed(() => {
     index = 1
   } else if (!stateStore.respectsMinimumPhotosLimit) {
     index = 2
-  } else if (profileStore.detail.sex !== 'NOT_AVAILABLE') {
-    index = 3
   }
   return index
 })

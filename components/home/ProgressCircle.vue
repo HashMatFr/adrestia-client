@@ -34,7 +34,7 @@
       </svg>
       <Text
         font-weight="semibold"
-        :value="String((currentIndex / steps.length) * 100) + '%'"
+        :value="String(Math.floor((currentIndex / steps.length) * 100)) + '%'"
         :class="[
           'absolute flex items-center justify-center',
           {
@@ -45,7 +45,7 @@
       />
     </div>
 
-    <Text :value="steps[currentIndex].stepLabel" class="text-primary" />
+    <Text :value="steps[currentIndex - 1].stepLabel" class="text-primary" />
 
     <CustomButton
       v-if="currentIndex !== steps.length"
@@ -115,7 +115,7 @@ const computeStrokeDashOffset = computed(() => {
 
 function goToRequiredPage() {
   return navigateTo(
-    localePath(props.steps[props.currentIndex].stepRequiredPage),
+    localePath(props.steps[props.currentIndex - 1].stepRequiredPage),
   )
 }
 </script>

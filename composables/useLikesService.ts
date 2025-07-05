@@ -7,7 +7,7 @@ export const useLikesService = () => {
     latitude: number,
     longitude: number,
   ) => {
-    const url = 'likes/get-received-likes-by-profile-id'
+    const url = 'likes/by-profile-id'
     const response: Like[] = await $adrestia(url, {
       method: 'GET',
       params: { latitude, longitude },

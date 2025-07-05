@@ -1,7 +1,7 @@
 <template>
   <div class="w-full px-5 pt-24 flex flex-col gap-5 pb-24">
     <div class="fixed top-16 left-0 w-full bg-coal-800">
-      <Stepper class="mx-auto" :steps="3" :currentStep="stepIndex"></Stepper>
+      <Stepper class="mx-auto" :steps="4" :currentStep="stepIndex"></Stepper>
     </div>
     <RegisterTouStep
       v-if="stepIndex === 1"
@@ -12,16 +12,25 @@
       @previous-step="previousStep"
       @next-step="nextStep"
     ></RegisterProfileStep>
-    <RegisterConfirmation v-else-if="stepIndex === 3"></RegisterConfirmation>
+    <RegisterBaseInfosStep
+      v-else-if="stepIndex === 3"
+      @previous-step="previousStep"
+      @validate-register-flow="createProfile"
+    ></RegisterBaseInfosStep>
+    <RegisterConfirmation v-else-if="stepIndex === 4"></RegisterConfirmation>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import Stepper from '~/components/design/Stepper.vue'
+import RegisterBaseInfosStep from '~/components/register/RegisterBaseInfosStep.vue'
 import RegisterConfirmation from '~/components/register/RegisterConfirmation.vue'
 import RegisterProfileStep from '~/components/register/RegisterProfileStep.vue'
 import RegisterTouStep from '~/components/register/RegisterTouStep.vue'
+import { useProfileService } from '~/composables/useProfileService'
+import { RegisterProfile } from '~/constants/types'
 import { useLayoutStore } from '~/stores/layoutStore'
+import { useProfileStore } from '~/stores/profileStore'
 
 definePageMeta({
   layout: 'empty',
@@ -29,6 +38,8 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+const profileService = useProfileService()
+const profileStore = useProfileStore()
 const layoutStore = useLayoutStore()
 layoutStore.pageTitle = t('register.pageTitle')
 layoutStore.isRegisterFlow = true
@@ -45,4 +56,34 @@ function nextStep() {
 function previousStep() {
   stepIndex.value--
 }
+
+async function createProfile() {
+  try {
+    const registerProfile: RegisterProfile = {
+      username: profileStore.username,
+      email: profileStore.email,
+      password: profileStore.password,
+      locale: profileStore.locale,
+      sex: profileStore.detail.sex,
+      orientation: profileStore.detail.orientation,
+      age: profileStore.detail.age,
+      size: profileStore.detail.size,
+    }
+    await profileService.registerProfile(registerProfile)
+    nextStep()
+  } catch (error) {
+    console.log(error)
+    layoutStore.error = t('register.error')
+  }
+}
+
+onUnmounted(() => {
+  profileStore.username = ''
+  profileStore.password = ''
+  profileStore.email = ''
+  profileStore.detail.sex = 'M'
+  profileStore.detail.orientation = 'HETEROSEXUAL'
+  profileStore.detail.age = 18
+  profileStore.detail.size = 175
+})
 </script>

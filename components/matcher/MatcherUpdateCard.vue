@@ -1,15 +1,6 @@
 <template>
   <div class="w-full">
     <div class="flex flex-col gap-5 pb-40">
-      <!-- SEX INTERESTED IN -->
-      <MatcherUpdateItem
-        :label="t('matcher.description.sexInterestedIn')"
-        :options="sexInterestedInOptions"
-        :enum-name="'sexInterestedIn'"
-      >
-        <template #itemIcon><Sex :width="28" :height="28"></Sex></template>
-      </MatcherUpdateItem>
-
       <!-- ORIENTATION -->
       <MatcherUpdateItem
         :label="t('matcher.description.orientation')"
@@ -216,8 +207,6 @@ matcherStore.newMatcher.maxAge = profileStore.matcher.maxAge
 matcherStore.newMatcher.distance = profileStore.matcher.distance
 
 matcherStore.newMatcher.matcherId = profileStore.matcher.matcherId
-matcherStore.newMatcher.sexInterestedIn =
-  profileStore.matcher.sexInterestedIn.split(',')
 matcherStore.newMatcher.orientation =
   profileStore.matcher.orientation.split(',')
 matcherStore.newMatcher.relationshipGoal =
@@ -234,13 +223,6 @@ matcherStore.newMatcher.alcoholConsumption =
   profileStore.matcher.alcoholConsumption.split(',')
 matcherStore.newMatcher.fitness = profileStore.matcher.fitness.split(',')
 
-const sexInterestedInOptions: SelectOption[] = [
-  {
-    value: 'M',
-    text: t('matcher.enums.sexInterestedIn.M'),
-  },
-  { value: 'F', text: t('matcher.enums.sexInterestedIn.F') },
-]
 const orientationOptions: SelectOption[] = [
   {
     value: 'NOT_AVAILABLE',
@@ -378,7 +360,6 @@ function updateMatcher() {
     minAge: matcherStore.newMatcher.minAge,
     maxAge: matcherStore.newMatcher.maxAge,
     distance: matcherStore.newMatcher.distance,
-    sexInterestedIn: matcherStore.newMatcher.sexInterestedIn.toString(),
     orientation: matcherStore.newMatcher.orientation.toString(),
     relationshipGoal: matcherStore.newMatcher.relationshipGoal.toString(),
     childrenSituation: matcherStore.newMatcher.childrenSituation.toString(),

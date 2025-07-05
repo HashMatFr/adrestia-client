@@ -2,7 +2,7 @@
   <div class="w-full flex flex-col text-center">
     <SectionLabel :label="t('subscription.statusLabel')"></SectionLabel>
     <div
-      class="w-full p-2 flex flex-row gap-3 items-center bg-coal-900 rounded"
+      class="w-full p-2 flex flex-row gap-3 items-center bg-coal-900 rounded-b rounded-tr"
     >
       <EuroCoin :width="34" :height="34" class="text-main-500"></EuroCoin>
       <HtmlText :value="getSubscriptionLabel"></HtmlText>

@@ -1,14 +1,5 @@
 <template>
   <div class="flex flex-col gap-5 text-primary pb-40">
-    <!-- SEX INTERESTED IN -->
-    <ProfileItem
-      :label="t('matcher.description.sexInterestedIn')"
-      :content="sexInterestedInOptions"
-      :isContentTag="true"
-    >
-      <template #itemIcon><Sex :width="28" :height="28"></Sex></template>
-    </ProfileItem>
-
     <!-- ORIENTATION -->
     <ProfileItem
       :label="t('matcher.description.orientation')"
@@ -210,11 +201,6 @@ const religionOptions = computed(() => {
   return profileStore.matcher.religion
     .split(',')
     .map((x) => t('matcher.enums.religion.' + x))
-})
-const sexInterestedInOptions = computed(() => {
-  return profileStore.matcher.sexInterestedIn
-    .split(',')
-    .map((x) => t('matcher.enums.sexInterestedIn.' + x))
 })
 const orientationOptions = computed(() => {
   return profileStore.matcher.orientation

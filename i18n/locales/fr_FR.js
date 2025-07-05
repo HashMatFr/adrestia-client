@@ -35,8 +35,6 @@ export default {
       activationWarning: 'Ton profil est actuellement en pause.',
       photosWarning:
         'Ton profil doit avoir au minimum 2 photos pour être actif et visible.',
-      descriptionWarning:
-        'Certaines informations manquantes de ta description sont requises.',
       noWarnings: 'Ton profil est complet et actif.',
     },
   },
@@ -95,7 +93,7 @@ export default {
   detail: {
     tabTitle: 'Détails',
     description: {
-      sex: 'Je suis un(e)<span class="text-alert-500">*</span>',
+      sex: 'Je suis un(e)',
       orientation: 'Mon orientation',
       age: 'Mon âge',
       size: 'Ma taille (cm)',
@@ -202,7 +200,6 @@ export default {
       politicalView: 'Se considérant politiquement comme',
       fitness: 'Avec un style de vie',
       religion: 'De confession',
-      sexInterestedIn: 'Doit être',
     },
     enums: {
       alcoholConsumption: {
@@ -262,10 +259,6 @@ export default {
         AGNOSTIC: 'Agnostique',
         OTHER: 'Autre',
       },
-      sexInterestedIn: {
-        M: 'un Homme',
-        F: 'une Femme',
-      },
       orientation: {
         NOT_AVAILABLE: 'Non renseigné',
         HETEROSEXUAL: 'Heterosexuelle',
@@ -304,6 +297,7 @@ export default {
     email: 'Email, l’identifiant du compte',
     password: 'Mot de passe',
     confirmPassword: 'Confirmation du mot de passe',
+    canNotBeChangeLater: 'Cette donnée ne sera pas modifiable plus tard',
     confirmation: {
       title: 'Ton compte a été créé avec succès !',
       description1:
@@ -315,6 +309,8 @@ export default {
       description4:
         'Adrestia te remercie de ta confiance et espère répondre au mieux à tes attentes !',
     },
+    error:
+      'An error occured, your account has not been created. Please try again.',
   },
   settings: {
     pageTitle: 'Paramètres',
@@ -444,7 +440,7 @@ export default {
     dislike: 'Je n’aime pas',
     rewind: 'Revoir',
     changeCriteria: 'Modifier mon Matcher',
-    managePhotos: 'Gérer mes photos',
+    managePhotos: 'Mes photos',
     logout: 'Se déconnecter',
     deactivate: 'Mettre en pause mon profil',
     reactivate: 'Réactiver mon profil',

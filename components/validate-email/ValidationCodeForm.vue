@@ -64,7 +64,7 @@ const form = ref({
   validationCode: false,
 })
 const validationCodeRef = ref(null)
-const validationCode = ref(0)
+const validationCode = ref('')
 
 function handleChangeField(name, value) {
   if (name === 'validationCode') {

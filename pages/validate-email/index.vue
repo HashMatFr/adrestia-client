@@ -13,7 +13,7 @@
 
     <div
       v-if="currentState === emailValidationStatesEnum.validated"
-      class="w-full flex flex-col gap-7"
+      class="w-full flex flex-col gap-7 items-center"
     >
       <Check :width="92" :height="88" class="mx-auto text-success-500"></Check>
       <Text :value="t('validateEmail.validationSuccess')" />
@@ -21,13 +21,9 @@
 
     <div
       v-else-if="currentState === emailValidationStatesEnum.notValidated"
-      class="w-full flex flex-col gap-7"
+      class="w-full flex flex-col gap-7 items-center text-center"
     >
-      <NoResults
-        :width="92"
-        :height="88"
-        class="mx-auto text-alert-500"
-      ></NoResults>
+      <NoResults :width="92" :height="88" class="text-alert-500"></NoResults>
       <Text :value="t('validateEmail.validationFailure')" />
       <CustomButton
         :label="t('actions.retry')"
@@ -42,9 +38,9 @@
 
     <div
       v-else-if="currentState === emailValidationStatesEnum.emailSent"
-      class="w-full flex flex-col gap-7"
+      class="w-full flex flex-col gap-7 items-center text-center"
     >
-      <Check :width="92" :height="88" class="mx-auto text-success-500"></Check>
+      <Check :width="92" :height="88" class="text-success-500"></Check>
       <Text :value="t('validateEmail.resendEmailSuccess')" />
       <CustomButton
         :label="t('actions.retry')"
@@ -59,13 +55,9 @@
 
     <div
       v-else-if="currentState === emailValidationStatesEnum.emailError"
-      class="w-full flex flex-col gap-7"
+      class="w-full flex flex-col gap-7 items-center text-center"
     >
-      <NoResults
-        :width="92"
-        :height="88"
-        class="mx-auto text-alert-500"
-      ></NoResults>
+      <NoResults :width="92" :height="88" class="text-alert-500"></NoResults>
       <Text :value="t('validateEmail.resendEmailFailure')" />
       <CustomButton
         :label="t('actions.retry')"
@@ -102,7 +94,7 @@ definePageMeta({
 
 const { t } = useI18n()
 const layoutStore = useLayoutStore()
-layoutStore.pageTitle = t('resetPassword.pageTitle')
+layoutStore.pageTitle = t('validateEmail.pageTitle')
 layoutStore.shouldDisplayHomeButton = true
 layoutStore.shouldDisplaySettingsButton = true
 layoutStore.shouldDisplayLanguagesSwitcher = false

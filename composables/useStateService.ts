@@ -56,7 +56,7 @@ export const useStateService = () => {
 
   const validateEmailWithCode = (
     profileStateId: string,
-    validationCode: number,
+    validationCode: string,
   ) => {
     const url = 'profile-state/validate-email-with-code'
     return $adrestia(url, {

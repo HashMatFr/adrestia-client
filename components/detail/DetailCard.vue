@@ -82,9 +82,6 @@ fitness.value = profileStore.detail.fitness
 
 function updateField(values) {
   switch (values.name) {
-    case 'sex':
-      sex.value = values.value
-      break
     case 'orientation':
       orientation.value = values.value
       break

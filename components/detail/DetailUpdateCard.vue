@@ -14,6 +14,7 @@
             :options="sexOptions"
             :preselected-value="sex"
             :on-change="handleChangeField"
+            :disabled="true"
             @is-field-valid="(event) => (form.sex = event)"
           />
         </div>
@@ -275,10 +276,6 @@ const sexOptions: SelectOption[] = [
   { value: 'F', text: t('detail.enums.sex.F') },
 ]
 const orientationOptions: SelectOption[] = [
-  {
-    value: 'NOT_AVAILABLE',
-    text: t('detail.enums.orientation.NOT_AVAILABLE'),
-  },
   { value: 'HETEROSEXUAL', text: t('detail.enums.orientation.HETEROSEXUAL') },
   { value: 'HOMOSEXUAL', text: t('detail.enums.orientation.HOMOSEXUAL') },
   { value: 'BISEXUAL', text: t('detail.enums.orientation.BISEXUAL') },
